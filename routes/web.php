@@ -24,3 +24,27 @@ Route::get('/wisata', function () {
 Route::get('/explore', function () {
     return view('user.explore');
 });
+
+Route::get('/wisata/{id}', function () {
+    return view('user.wisata_detail');
+});
+
+Route::get('/explore/{id}', function () {
+    return view('user.explore_detail');
+});
+
+Route::get('/login', function () {
+    return view('user.login');
+});
+
+Route::get('/register', function () {
+    return view('user.register');
+});
+
+Route::get('/pemesanan', function () {
+    return view('user.pemesanan');
+});
+
+Route::get('/pemesanan2', function () {
+    return view('user.pemesanan2');
+});
