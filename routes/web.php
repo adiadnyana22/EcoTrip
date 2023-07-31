@@ -48,3 +48,11 @@ Route::get('/pemesanan', function () {
 Route::get('/pemesanan2', function () {
     return view('user.pemesanan2');
 });
+
+Route::get('/pemesanan3', function () {
+    return view('user.pemesanan3');
+});
+
+Route::get('/success', function () {
+    return view('user.success');
+});
