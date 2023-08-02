@@ -13,18 +13,16 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('wisatas', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->string('gender');
-            $table->string('telp');
-            $table->string('nik');
-            $table->string('nationality');
-            $table->string('koin');
-            $table->foreignId('role_id');
-            $table->rememberToken();
+            $table->string('picture');
+            $table->integer('local_price');
+            $table->integer('foreign_price');
+            $table->string('location');
+            $table->string('description', 5000);
+            $table->string('activity', 5000);
+            $table->string('includes', 5000);
             $table->timestamps();
         });
     }
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('wisatas');
     }
 };
