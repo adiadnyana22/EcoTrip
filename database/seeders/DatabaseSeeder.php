@@ -19,7 +19,8 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             WisataSeeder::class,
             WisataPictureSeeder::class,
-            ExploreSeeder::class
+            ExploreSeeder::class,
+            ExplorePictureSeeder::class
         ]);
     }
 }

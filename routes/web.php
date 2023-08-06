@@ -21,13 +21,9 @@ Route::get('/wisata', [\App\Http\Controllers\WisataController::class, 'wisataLis
 
 Route::get('/explore', [\App\Http\Controllers\ExploreController::class, 'exploreList'])->name('exploreList');
 
-Route::get('/wisata/{id}', function () {
-    return view('user.wisata_detail');
-});
+Route::get('/wisata/{wisata}', [\App\Http\Controllers\WisataController::class, 'wisataDetail'])->name('wisataDetail');
 
-Route::get('/explore/{id}', function () {
-    return view('user.explore_detail');
-});
+Route::get('/explore/{explore}', [\App\Http\Controllers\ExploreController::class, 'exploreDetail'])->name('exploreDetail');
 
 Route::get('/login', function () {
     return view('user.login');

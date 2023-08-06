@@ -42,32 +42,25 @@
         <div class="container mx-auto">
             <div class="flex gap-12">
                 <div class="basis-3/5">
-                    <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Wisata" class="w-full max-h-96 object-cover">
+                    <img src="{{ asset('assets/user/images/wisata/'.$wisata->picture) }}" alt="Wisata" class="w-full max-h-96 object-cover">
                     <div class="main-carousel mt-3" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false }'>
+                        @foreach($wisataImgList as $img)
                         <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                            <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
+                            <img src="{{ asset('assets/user/images/wisata/'.$img->picture) }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
                         </div>
-                        <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                            <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
-                        </div>
-                        <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                            <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
-                        </div>
-                        <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                            <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
-                        </div>
+                        @endforeach
                     </div>
                     <div class="pt-3 pb-6">
-                        <h1 class="text-4xl font-bold my-8">Wisata Coban Rondo</h1>
+                        <h1 class="text-4xl font-bold my-8">{{ $wisata->name }}</h1>
                         <div class="flex items-center gap-8">
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/lokal.png') }}" alt="Lokal" class="w-52">
-                                <div class="absolute top-2 right-4 text-primary font-bold">Rp 15.000</div>
+                                <div class="absolute top-3 right-4 text-primary font-bold text-sm">Rp {{ number_format($wisata->local_price) }}</div>
                             </div>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/asing.png') }}" alt="Asing" class="w-52">
-                                <div class="absolute top-2 right-4 text-blue font-bold">Rp 25.000</div>
+                                <div class="absolute top-3 right-4 text-blue font-bold text-sm">Rp {{ number_format($wisata->foreign_price) }}</div>
                             </div>
                         </div>
                     </div>
@@ -79,47 +72,32 @@
                             <div class="pt-6 pb-2">
                                 <h2 class="mb-3 font-bold text-gray">DESKRIPSI TEMPAT WISATA</h2>
                                 <p class="text-justify mb-2">
-                                    Panas-panas gini enak nya nyobain suasana dingin dan sejuk nihh, yuk cobain vibes air terjun coban rondo bersama Eco Trip.
-                                </p>
-                                <p class="text-justify mb-2">
-                                    Coban Rondo merupakan salah satu destinasi yang wajib dikunjungi ketika kalian sedang berada di Malang. Air terjun yang memiliki ketinggian sekitar 84 meter dan lokasi air terjun berada pada ketinggian 1.134 meter di atas permukaan laut merupakan air terjun yang terletak di di Desa Pandesari, Kecamatan Pujon, Kabupaten Malang, Jawa Timur.
-                                </p>
-                                <p class="text-justify mb-2">
-                                    Saat berkunjung kesini kalian akan disuguhkan dengan keindahan alam yang menyejukkan mata dengan pemandangan panorama air terjun yang turun dari tebing dan juga banyak aktivitas seru lainnya yang bisa kalian nikmati .
-                                </p>
-                            </div>
-                            <div class="pt-6 pb-2">
-                                <h2 class="mb-3 font-bold text-gray">DESKRIPSI TEMPAT WISATA</h2>
-                                <p class="text-justify mb-2">
-                                    Jalan-jalan di Jawa Timur belum lengkap rasanya kalau belum menikmati keindahan tempat wisata alamnya. Salah satunya adalah wisata ke pantai-pantai cantiknya! Tersedia banyak pilihan paket dengan durasi, jam keberangkatan, serta lokasi kunjungan yang bervariasi. Jadi, tinggal kamu sesuaikan saja dengan waktu jalan-jalanmu!
+                                    {{ $wisata->description }}
                                 </p>
                             </div>
                             <div class="pt-6 pb-2">
                                 <h2 class="mb-3 font-bold text-gray">AKTIVITAS</h2>
                                 <ul class="flex flex-wrap gap-x-8 gap-y-5 my-5">
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> Bermain Air</li>
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> EcoKit</li>
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> Taman Labirin</li>
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> Tiket Masuk</li>
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> Shooting Target</li>
-                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> Bersepeda</li>
+                                    @foreach(explode(',', $wisata->activity) as $activity)
+                                    <li class="flex gap-2"><i class='bx bx-check text-primary bg-primary/5 p-1.5 rounded-full'></i> {{ trim($activity) }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                             <div class="pt-6 pb-2">
-                                <h2 class="mb-3 font-bold text-gray">AKTIVITAS</h2>
+                                <h2 class="mb-3 font-bold text-gray">TIKET SUDAH TERMASUK</h2>
                                 <ul class="my-5 flex flex-col gap-3">
-                                    <li class="rounded border-l-4 border-l-primary border-r border-r-gray border-t border-t-gray/25 border-b border-b-gray px-6 py-3">Akses ke fasilitas umum yang tersedia</li>
-                                    <li class="rounded border-l-4 border-l-primary border-r border-r-gray border-t border-t-gray/25 border-b border-b-gray px-6 py-3">Tiket masuk Air Terjun Coban Rondo</li>
-                                    <li class="rounded border-l-4 border-l-primary border-r border-r-gray border-t border-t-gray/25 border-b border-b-gray px-6 py-3">EcoKit</li>
+                                    @foreach(explode(',', $wisata->includes) as $includes)
+                                    <li class="rounded border-l-4 border-l-primary border-r border-r-gray border-t border-t-gray/25 border-b border-b-gray px-6 py-3"> {{ trim($includes) }}</li>
+                                    @endforeach
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="basis-2/5">
+                <div class="basis-2/5" x-data="{ count: 1, price: @json($wisata->local_price) }">
                     <div class="p-8 w-full shadow-lg rounded-xl sticky top-8">
                         <p class="text-gray">PEMBELIAN TIKET</p>
-                        <h2 class="font-bold text-2xl my-2">Wisata Coban Rondo</h2>
+                        <h2 class="font-bold text-2xl my-2">{{ $wisata->name }}</h2>
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Pilih Tanggal</label>
                             <input type="date" class="py-2 px-4 rounded border border-gray">
@@ -127,14 +105,14 @@
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Jumlah Peserta</label>
                             <div class="flex items-center gap-2">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl">-</button>
-                                <input type="number" value="1" class="w-12 text-center outline-none text-xl">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl">+</button>
+                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.max(count - 1, 1)">-</button>
+                                <input type="number" x-model="count" class="w-12 text-center outline-none text-xl">
+                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.min(count + 1, 10)">+</button>
                             </div>
                         </div>
                         <div class="py-5 flex justify-between items-center">
                             <div class="text-gray text-xl font-bold">TOTAL HARGA</div>
-                            <strong class="font-bold text-2xl">Rp 100.000</strong>
+                            <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * price)"></span></strong>
                         </div>
                         <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
                     </div>
@@ -142,4 +120,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('footExtention')
+    <script src="//unpkg.com/alpinejs" defer></script>
 @endsection
