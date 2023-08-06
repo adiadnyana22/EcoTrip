@@ -22,132 +22,22 @@
                 </div>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
+                @foreach($exploreList as $explore)
                 <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
+                    <img src="{{ asset('assets/user/images/explore/'.$explore->picture) }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
                     <div class="py-3">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
                                 <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
                                 <div><i class='bx bxs-star text-star' ></i> 4.5</div>
                             </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
+                            <div class="text-gray">{{ $explore->location }}</div>
                         </div>
-                        <h3 class="text-xl font-bold mt-3">Coban Rondo</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
+                        <h3 class="text-xl font-bold mt-3">{{ $explore->name }}</h3>
+                        <p class="mb-2 text-sm">Rp {{ number_format($explore->local_price, 2) }}</p>
                     </div>
                 </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore2.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Bromo Tengger Semeru</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore3.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Batu Malang</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">Coban Rondo</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore2.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Bromo Tengger Semeru</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore3.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Batu Malang</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">Coban Rondo</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore2.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Bromo Tengger Semeru</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
-                <a href="#">
-                    <img src="{{ asset('assets/user/images/homeExplore3.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Batu Malang</h3>
-                        <p class="mb-2 text-sm">Rp 15.000</p>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </div>
     </section>

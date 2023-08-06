@@ -17,13 +17,9 @@ Route::get('/', function () {
     return view('user.index');
 });
 
-Route::get('/wisata', function () {
-    return view('user.wisata');
-});
+Route::get('/wisata', [\App\Http\Controllers\WisataController::class, 'wisataList'])->name('wisataList');
 
-Route::get('/explore', function () {
-    return view('user.explore');
-});
+Route::get('/explore', [\App\Http\Controllers\ExploreController::class, 'exploreList'])->name('exploreList');
 
 Route::get('/wisata/{id}', function () {
     return view('user.wisata_detail');

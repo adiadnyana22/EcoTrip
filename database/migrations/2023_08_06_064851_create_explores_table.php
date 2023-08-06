@@ -13,16 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('wisatas', function (Blueprint $table) {
+        Schema::create('explores', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('picture');
             $table->integer('local_price');
             $table->integer('foreign_price');
             $table->string('location');
+            $table->integer('type'); // 0 for close trip and 1 for open trip
             $table->string('description', 2000);
             $table->string('activity', 2000);
             $table->string('includes', 2000);
+            $table->string('itinerary', 2000);
             $table->timestamps();
         });
     }
@@ -34,6 +36,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('wisatas');
+        Schema::dropIfExists('explores');
     }
 };
