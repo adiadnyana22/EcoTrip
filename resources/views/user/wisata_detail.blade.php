@@ -99,7 +99,8 @@
                     </div>
                 </div>
                 <div class="basis-2/5" x-data="{ count: 1, price: @json($wisata->local_price) }">
-                    <div class="p-8 w-full shadow-lg rounded-xl sticky top-8">
+                    <form method="POST" action="{{ route('pemesananWisata1') }}" class="p-8 w-full shadow-lg rounded-xl sticky top-8">
+                        @csrf
                         <p class="text-gray">PEMBELIAN TIKET</p>
                         <h2 class="font-bold text-2xl my-2">{{ $wisata->name }}</h2>
                         <div class="flex justify-between flex-wrap items-center my-5">
@@ -181,7 +182,7 @@
                             <label for="#">Jumlah Peserta</label>
                             <div class="flex items-center gap-2">
                                 <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.max(count - 1, 1)">-</button>
-                                <input type="number" x-model="count" class="w-12 text-center outline-none text-xl">
+                                <input type="number" x-model="count" name="qty" class="w-12 text-center outline-none text-xl">
                                 <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.min(count + 1, 10)">+</button>
                             </div>
                         </div>
@@ -189,8 +190,9 @@
                             <div class="text-gray text-xl font-bold">TOTAL HARGA</div>
                             <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * price)"></span></strong>
                         </div>
+                        <input type="hidden" name="wisata_id" value="{{ $wisata->id }}">
                         <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -234,7 +236,7 @@
             return {
                 showDatepicker: false,
                 datepickerValue: "",
-                dateFormat: "DD/MM/YYYY",
+                dateFormat: "d MMM YYYY",
                 month: "",
                 year: "",
                 no_of_days: [],
@@ -276,6 +278,9 @@
                     }
                     if (this.dateFormat === "D d M, Y") {
                         return `${formattedDay} ${formattedDate} ${formattedMonthShortName} ${formattedYear}`; // Tue 02 Mar 2021
+                    }
+                    if (this.dateFormat === "d MMM YYYY") {
+                        return `${formattedDate} ${formattedMonthShortName} ${formattedYear}`; // Tue 02 Mar 2021
                     }
                     return `${formattedDay} ${formattedDate} ${formattedMonth} ${formattedYear}`;
                 },

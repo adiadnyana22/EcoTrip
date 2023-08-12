@@ -10,10 +10,10 @@
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
             </div>
             <div class="my-12 shadow px-6 py-4 rounded-xl">
-                <h2>Air Terjun Coban Rondo</h2>
+                <h2>{{ $wisata->name }}</h2>
                 <div class="flex justify-between items-center text-gray">
-                    <p>12 June 2023</p>
-                    <p>3 pax</p>
+                    <p>{{ \Carbon\Carbon::parse($date)->isoFormat('d MMM YYYY') }}</p>
+                    <p>{{ $qty }} pax</p>
                 </div>
             </div>
             <div class="my-6">
@@ -41,44 +41,38 @@
                     <h1 class="text-3xl font-bold">Data Diri Pemesan</h1>
                 </div>
                 <div class="bg-white rounded-lg shadow mb-5 px-6 py-4 flex flex-col gap-5">
+                    @for($i = 0; $i < $qty; $i++)
                     <div>
-                        <span class="text-coin text-sm">Pemesan 1</span>
-                        <h4 class="text-lg font-medium">Reyhan Nur Rohmat</h4>
+                        <span class="text-coin text-sm">Pemesan {{ $i+1 }}</span>
+                        <h4 class="text-lg font-medium">{{ $pemesan[$i]['name'] }}</h4>
                         <div class="flex justify-between items-center">
-                            <span>reyhan@gmail.com</span>
-                            <span>+62 8312 1245 1251</span>
+                            <span>{{ $pemesan[$i]['email'] }}</span>
+                            <span>{{ $pemesan[$i]['telp'] }}</span>
                         </div>
                     </div>
-                    <div>
-                        <span class="text-coin text-sm">Pemesan 2</span>
-                        <h4 class="text-lg font-medium">Reyhan Nur Rohmat</h4>
-                        <div class="flex justify-between items-center">
-                            <span>reyhan@gmail.com</span>
-                            <span>+62 8312 1245 1251</span>
-                        </div>
-                    </div>
+                    @endfor
                 </div>
-                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4">
-                    <h2 class="font-medium text-xl mb-6">Air Terjun Coban Rondo</h2>
+                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: @json(1500), useVoucher: false, voucher:@json(0), totalPrice: @json($total_price) }">
+                    <h2 class="font-medium text-xl mb-6">{{ $wisata->name }}</h2>
                     <div class="flex justify-between items-center my-2">
-                        <span class="text-gray">Tiket Masuk x 2</span>
-                        <span class="text-gray">Rp30.000</span>
+                        <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
+                        <span class="text-gray">Rp{{ number_format($total_price) }}</span>
                     </div>
-                    <div class="flex justify-between items-center my-2">
+                    <div class="flex justify-between items-center my-2" x-show="useCoin">
                         <span class="text-gray">Koin</span>
                         <span class="text-gray">-Rp1.500</span>
                     </div>
-                    <div class="flex justify-between items-center my-2">
+                    <div class="flex justify-between items-center my-2" x-show="useVoucher">
                         <span class="text-gray">Voucher Discount</span>
-                        <span class="text-gray">-Rp10.000</span>
+                        <span class="text-gray">-Rp<span x-text="new Intl.NumberFormat('en-ID').format(voucher)"></span></span>
                     </div>
                     <div class="flex justify-between items-center my-2">
                         <span class="font-bold text-lg">Total Pembayaran</span>
-                        <span class="font-bold text-lg">Rp18.000</span>
+                        <span class="font-bold text-lg">Rp<span x-text="new Intl.NumberFormat('en-ID').format(totalPrice - ((useCoin) ? coin : 0) - ((useVoucher) ? voucher : 0))"></span></span>
                     </div>
                     <hr class="border-dotted border-gray">
                     <div class="flex gap-3 my-4 items-center">
-                        <input type="checkbox" name="coin" class="w-5 h-5">
+                        <input type="checkbox" name="coin" class="w-5 h-5" x-model="useCoin">
 {{--                        <label>--}}
 {{--                            <input class="sr-only peer" name="coin" type="checkbox" value="1" />--}}
 {{--                            <div class="w-8 h-8 rounded-full border border-coin flex items-center justify-center text-coin peer-checked:font-semibold peer-checked:bg-coin peer-checked:text-white">--}}
@@ -87,7 +81,70 @@
 {{--                        </label>--}}
                         <label for="">Tukarkan 1500 Koin EcoTrip</label>
                     </div>
-                    <div class="rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer">Voucher</div>
+                    <div x-data="{ modelOpen: false }">
+                        <div class="rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer" @click="modelOpen =!modelOpen">Voucher</div>
+                        <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                                <div x-cloak @click="modelOpen = false" x-show="modelOpen"
+                                     x-transition:enter="transition ease-out duration-300 transform"
+                                     x-transition:enter-start="opacity-0"
+                                     x-transition:enter-end="opacity-100"
+                                     x-transition:leave="transition ease-in duration-200 transform"
+                                     x-transition:leave-start="opacity-100"
+                                     x-transition:leave-end="opacity-0"
+                                     class="fixed inset-0 transition-opacity bg-gray bg-opacity-40" aria-hidden="true"
+                                ></div>
+
+                                <div x-cloak x-show="modelOpen"
+                                     x-transition:enter="transition ease-out duration-300 transform"
+                                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                     x-transition:leave="transition ease-in duration-200 transform"
+                                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                     class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                >
+                                    <div class="flex items-center justify-between space-x-4">
+                                        <h1 class="text-xl font-medium text-gray-800 ">Voucher yang kamu miliki</h1>
+
+                                        <button @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-8 flex flex-col gap-4">
+                                        <label>
+                                            <input class="sr-only peer" name="voucher" type="radio" value="10000" x-model="voucher" />
+                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                                <div class="text-xl font-bold">Voucher Pengguna Baru 23%</div>
+                                                <p class="text-sm text-gray">Diskon s/d Rp7rb Min. Pembelian Rp30rb</p>
+                                            </div>
+                                        </label>
+                                        <label>
+                                            <input class="sr-only peer" name="voucher" type="radio" value="5000" x-model="voucher" />
+                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                                <div class="text-xl font-bold">Voucher Pengguna Baru 18%</div>
+                                                <p class="text-sm text-gray">Diskon s/d Rp2rb Min. Pembelian Rp30rb</p>
+                                            </div>
+                                        </label>
+                                        <label>
+                                            <input class="sr-only peer" name="voucher" type="radio" value="1000" x-model="voucher" />
+                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                                <div class="text-xl font-bold">Voucher Pengguna Baru 10%</div>
+                                                <p class="text-sm text-gray">Diskon s/d Rp500 Min. Pembelian Rp30rb</p>
+                                            </div>
+                                        </label>
+                                        <div class="flex justify-center gap-6 mt-4">
+                                            <button type="button" class="px-4 py-2 text-gray" @click="voucher = 0; useVoucher = false">Hapus Voucher</button>
+                                            <button type="button" class="px-4 py-2 bg-primary text-white rounded-lg" @click="modelOpen = false; useVoucher = ((voucher == 0) ? false : true)">Pakai</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button class="rounded bg-gray px-4 py-2 text-center text-white block w-full mt-4 mb-2">Bayar</button>
                 </div>
                 <div class="flex items-center gap-3 ml-1">

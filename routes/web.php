@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('user.index');
-});
+})->name('home');
 
 Route::get('/wisata', [\App\Http\Controllers\WisataController::class, 'wisataList'])->name('wisataList');
 
@@ -48,3 +48,6 @@ Route::get('/pemesanan3', function () {
 Route::get('/success', function () {
     return view('user.success');
 });
+
+Route::post('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'pemesananFromDetail'])->name('pemesananWisata1');
+Route::post('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataController::class, 'pemesananFrom1'])->name('pemesananWisata2');
