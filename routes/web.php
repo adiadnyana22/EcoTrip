@@ -45,9 +45,13 @@ Route::get('/pemesanan3', function () {
     return view('user.pemesanan3');
 });
 
+Route::post('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananFromDetail'])->name('pemesananWisata1');
+Route::get('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananDataDiri'])->name('viewPemesananWisata1');
+Route::post('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananDataDiri'])->name('pemesananWisata2');
+Route::get('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananConfirm'])->name('viewPemesananWisata2');
+Route::post('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananPayment'])->name('pemesananWisata3');
+Route::get('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananPayment'])->name('viewPemesananWisata3');
+
 Route::get('/success', function () {
     return view('user.success');
-});
-
-Route::post('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'pemesananFromDetail'])->name('pemesananWisata1');
-Route::post('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataController::class, 'pemesananFrom1'])->name('pemesananWisata2');
+})->name('success');

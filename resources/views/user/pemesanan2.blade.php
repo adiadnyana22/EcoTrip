@@ -35,8 +35,9 @@
                 </ul>
             </div>
         </div>
-        <div class="max-h-screen max-w-full bg-[#F4F4F4] pl-24 pt-12 pr-16 pb-16 overflow-auto">
-            <form action="">
+        <div class="max-h-screen max-w-full bg-[#F4F4F4] pl-24 pt-12 pr-16 pb-16 overflow-auto" x-data="{ isTaCChecked: false }">
+            <form action="{{ route('pemesananWisata3') }}" method="POST">
+                @csrf
                 <div class="mt-6 mb-4">
                     <h1 class="text-3xl font-bold">Data Diri Pemesan</h1>
                 </div>
@@ -52,7 +53,7 @@
                     </div>
                     @endfor
                 </div>
-                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: @json(1500), useVoucher: false, voucher:@json(0), totalPrice: @json($total_price) }">
+                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: @json(1500), useVoucher: false, voucher:@json(0), totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucher : 0) }  }">
                     <h2 class="font-medium text-xl mb-6">{{ $wisata->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
@@ -60,7 +61,7 @@
                     </div>
                     <div class="flex justify-between items-center my-2" x-show="useCoin">
                         <span class="text-gray">Koin</span>
-                        <span class="text-gray">-Rp1.500</span>
+                        <span class="text-gray">-Rp<span x-text="new Intl.NumberFormat('en-ID').format(coin)"></span></span>
                     </div>
                     <div class="flex justify-between items-center my-2" x-show="useVoucher">
                         <span class="text-gray">Voucher Discount</span>
@@ -68,11 +69,12 @@
                     </div>
                     <div class="flex justify-between items-center my-2">
                         <span class="font-bold text-lg">Total Pembayaran</span>
-                        <span class="font-bold text-lg">Rp<span x-text="new Intl.NumberFormat('en-ID').format(totalPrice - ((useCoin) ? coin : 0) - ((useVoucher) ? voucher : 0))"></span></span>
+                        <span class="font-bold text-lg">Rp<span x-text="new Intl.NumberFormat('en-ID').format(totalPay)"></span></span>
                     </div>
                     <hr class="border-dotted border-gray">
                     <div class="flex gap-3 my-4 items-center">
-                        <input type="checkbox" name="coin" class="w-5 h-5" x-model="useCoin">
+                        <input type="checkbox" name="useCoin" class="w-5 h-5" value="Yes" x-model="useCoin">
+                        <input type="hidden" name="coin" x-model="coin">
 {{--                        <label>--}}
 {{--                            <input class="sr-only peer" name="coin" type="checkbox" value="1" />--}}
 {{--                            <div class="w-8 h-8 rounded-full border border-coin flex items-center justify-center text-coin peer-checked:font-semibold peer-checked:bg-coin peer-checked:text-white">--}}
@@ -82,7 +84,7 @@
                         <label for="">Tukarkan 1500 Koin EcoTrip</label>
                     </div>
                     <div x-data="{ modelOpen: false }">
-                        <div class="rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer" @click="modelOpen =!modelOpen">Voucher</div>
+                        <div x-bind:class="(useVoucher) ? 'rounded border border-primary px-6 py-3 text-center text-primary cursor-pointer' : 'rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer' " @click="modelOpen =!modelOpen" x-text="(useVoucher) ? 'Voucher potongan Rp' + new Intl.NumberFormat('en-ID').format(voucher) + ' terpakai' : 'Voucher'">Voucher</div>
                         <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                             <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                 <div x-cloak @click="modelOpen = false" x-show="modelOpen"
@@ -117,21 +119,21 @@
                                     <div class="mt-8 flex flex-col gap-4">
                                         <label>
                                             <input class="sr-only peer" name="voucher" type="radio" value="10000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
                                                 <div class="text-xl font-bold">Voucher Pengguna Baru 23%</div>
                                                 <p class="text-sm text-gray">Diskon s/d Rp7rb Min. Pembelian Rp30rb</p>
                                             </div>
                                         </label>
                                         <label>
                                             <input class="sr-only peer" name="voucher" type="radio" value="5000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
                                                 <div class="text-xl font-bold">Voucher Pengguna Baru 18%</div>
                                                 <p class="text-sm text-gray">Diskon s/d Rp2rb Min. Pembelian Rp30rb</p>
                                             </div>
                                         </label>
                                         <label>
                                             <input class="sr-only peer" name="voucher" type="radio" value="1000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-slate-700 peer-checked:font-semibold peer-checked:bg-slate-900 peer-checked:text-white">
+                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
                                                 <div class="text-xl font-bold">Voucher Pengguna Baru 10%</div>
                                                 <p class="text-sm text-gray">Diskon s/d Rp500 Min. Pembelian Rp30rb</p>
                                             </div>
@@ -145,10 +147,14 @@
                             </div>
                         </div>
                     </div>
-                    <button class="rounded bg-gray px-4 py-2 text-center text-white block w-full mt-4 mb-2">Bayar</button>
+                    <input type="hidden" name="total_pay" x-model="totalPay">
+                    <button x-bind:class="'rounded px-4 py-2 text-center text-white block w-full mt-4 mb-2 ' + ((isTaCChecked) ? 'bg-primary' : 'bg-gray')" x-bind:disabled="!isTaCChecked">Bayar</button>
                 </div>
                 <div class="flex items-center gap-3 ml-1">
-                    <input type="checkbox" name="sk" class="w-5 h-5">
+                    <input type="checkbox" name="sk" class="w-5 h-5" value="Yes" x-model="isTaCChecked">
+                    <input type="hidden" name="wisata_id" value="{{ $wisata->id }}">
+                    <input type="hidden" name="date" value="{{ $date }}">
+                    <input type="hidden" name="qty" value="{{ $qty }}">
                     <label for="">Saya menyetujui syarat dan ketentuan</label>
                 </div>
             </form>
