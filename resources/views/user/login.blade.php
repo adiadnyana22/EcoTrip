@@ -16,16 +16,17 @@
             <div class="basis-5/12 h-full w-full px-8 py-12">
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
                 <h1 class="my-8 text-2xl font-bold text-primary leading-6">Masuk kedalam EcoTrip</h1>
-                <form action="#">
+                <form action="{{ route('loginMtd') }}" method="POST">
+                    @csrf
                     <div class="mb-3">
                         <label for="" class="block mb-1">Masukkan e-mail</label>
                         <input type="email" class="block px-6 py-3 rounded-lg border border-gray/25 w-full"
-                               placeholder="email">
+                               placeholder="email" name="email">
                     </div>
                     <div class="mb-3">
                         <label for="" class="block mb-1">Masukkan password</label>
                         <input type="password" class="block px-6 py-3 rounded-lg border border-gray/25 w-full"
-                               placeholder="password">
+                               placeholder="password" name="password">
                     </div>
                     <div class="my-3">
                         <button class="block w-full px-6 py-3 rounded-lg text-white"
@@ -34,7 +35,7 @@
                         </button>
                     </div>
                 </form>
-                <div class="text-gray flex items-center gap-3 mt-6">Belum memiliki akun? <a href="#"
+                <div class="text-gray flex items-center gap-3 mt-6">Belum memiliki akun? <a href="{{ route('register') }}"
                                                                                             class="text-primary underline">Daftar</a>
                 </div>
             </div>

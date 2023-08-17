@@ -105,6 +105,7 @@
                         <h2 class="font-bold text-2xl my-2">{{ $wisata->name }}</h2>
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Pilih Tanggal</label>
+                            <!-- Datepicker -->
                             <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
                                 <div class="container mx-auto cursor-pointer">
                                     <div class="w-64">
@@ -177,6 +178,7 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Datepicker -->
                         </div>
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Jumlah Peserta</label>

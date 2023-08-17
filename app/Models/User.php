@@ -20,7 +20,7 @@ class User extends Authenticatable
         'telp',
         'nik',
         'nationality',
-        'koin',
+        'coin',
         'role_id',
     ];
 

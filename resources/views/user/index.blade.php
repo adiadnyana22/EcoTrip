@@ -25,7 +25,7 @@
     <section class="py-12">
         <div class="container mx-auto">
             <div class="flex justify-center items-center gap-16 flex-wrap">
-                <a href="#" class="flex justify-center items-center flex-col gap-5">
+                <a href="{{ route('wisataList') }}" class="flex justify-center items-center flex-col gap-5">
                     <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Eco Wisata" class="w-10">
                     <div class="text-lg">EcoWisata</div>
                 </a>

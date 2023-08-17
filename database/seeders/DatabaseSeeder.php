@@ -20,7 +20,8 @@ class DatabaseSeeder extends Seeder
             WisataSeeder::class,
             WisataPictureSeeder::class,
             ExploreSeeder::class,
-            ExplorePictureSeeder::class
+            ExplorePictureSeeder::class,
+            VoucherSeeder::class
         ]);
     }
 }

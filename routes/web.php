@@ -25,25 +25,11 @@ Route::get('/wisata/{wisata}', [\App\Http\Controllers\WisataController::class, '
 
 Route::get('/explore/{explore}', [\App\Http\Controllers\ExploreController::class, 'exploreDetail'])->name('exploreDetail');
 
-Route::get('/login', function () {
-    return view('user.login');
-});
+Route::get('/login', [\App\Http\Controllers\AuthController::class, 'loginPage'])->name('login');
+Route::post('/login', [\App\Http\Controllers\AuthController::class, 'loginMtd'])->name('loginMtd');
+Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logoutMtd'])->name('logout');
 
-Route::get('/register', function () {
-    return view('user.register');
-});
-
-Route::get('/pemesanan', function () {
-    return view('user.pemesanan');
-});
-
-Route::get('/pemesanan2', function () {
-    return view('user.pemesanan2');
-});
-
-Route::get('/pemesanan3', function () {
-    return view('user.pemesanan3');
-});
+Route::get('/register', [\App\Http\Controllers\AuthController::class, 'registerPage'])->name('register');
 
 Route::post('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananFromDetail'])->name('pemesananWisata1');
 Route::get('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananDataDiri'])->name('viewPemesananWisata1');

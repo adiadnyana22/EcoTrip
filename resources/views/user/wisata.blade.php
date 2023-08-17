@@ -19,7 +19,7 @@
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 @foreach($wisataList as $wisata)
-                <a href="#">
+                <a href="{{ route('wisataDetail', $wisata->id) }}">
                     <img src="{{ asset('assets/user/images/wisata/'.$wisata->picture) }}" alt="Wisata" class="w-full h-48 object-cover rounded-lg">
                     <div class="py-3">
                         <div class="flex justify-between items-center">

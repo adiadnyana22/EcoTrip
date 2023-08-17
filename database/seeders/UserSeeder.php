@@ -24,7 +24,7 @@ class UserSeeder extends Seeder
             'telp' => '081246868369',
             'nik' => '1234567890',
             'nationality' => 'Foreign',
-            'koin' => '999999999',
+            'coin' => '999999999',
             'role_id' => 1
         ]);
 
@@ -36,7 +36,7 @@ class UserSeeder extends Seeder
             'telp' => '08123456789',
             'nik' => '0987654321',
             'nationality' => 'Indonesia',
-            'koin' => '10000',
+            'coin' => '10000',
             'role_id' => 2
         ]);
     }

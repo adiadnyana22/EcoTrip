@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Voucher;
 use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -81,13 +82,15 @@ class PemesananWisataController extends Controller
         $qty = Session::get('qty');
         $pemesan = Session::get('pemesan');
         $total_price = Session::get('total_price');
+        $voucher = Voucher::all();
 
         return view('user.pemesanan2')
             ->with('wisata', $wisata)
             ->with('date', $date)
             ->with('qty', $qty)
             ->with('pemesan', $pemesan)
-            ->with('total_price', $total_price);
+            ->with('total_price', $total_price)
+            ->with('voucher', $voucher);
     }
 
     public function mtdPemesananPayment(Request $request) {
