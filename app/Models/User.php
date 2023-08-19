@@ -28,4 +28,12 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    public function unusedVouchers() {
+        return Voucher::whereNotIn('id', function($query) {
+            $query->select('voucher_id')
+                ->from('voucher_uses')
+                ->where('user_id', $this->id);
+        })->get();
+    }
 }

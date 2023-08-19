@@ -64,7 +64,7 @@
                                 <input type="radio" name="gender{{ $i }}" value="M"><label for="">Laki -laki</label>
                             </div>
                             <div class="flex items-center gap-3 ml-1">
-                                <input type="radio" name="gender{{ $i }}" value="W"><label for="">Perempuan</label>
+                                <input type="radio" name="gender{{ $i }}" value="F"><label for="">Perempuan</label>
                             </div>
                         </div>
                         <div class="mt-6 mb-2">

@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
             'name' => 'Visitor',
             'email' => 'visitor@gmail.com',
             'password' => Hash::make('visitor'),
-            'gender' => 'W',
+            'gender' => 'F',
             'telp' => '08123456789',
             'nik' => '0987654321',
             'nationality' => 'Indonesia',

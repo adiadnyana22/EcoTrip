@@ -53,7 +53,7 @@
                     </div>
                     @endfor
                 </div>
-                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: @json(1500), useVoucher: false, voucher:@json(0), totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucher : 0) }  }">
+                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: {{ \Illuminate\Support\Facades\Auth::user()->coin }}, useVoucher: false, voucher: '', voucherList: {{ str_replace('"', "'", json_encode($voucher)) }}, totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucherList.find((vc) => vc.id == this.voucher).actual_disc : 0) }  }">
                     <h2 class="font-medium text-xl mb-6">{{ $wisata->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
@@ -65,14 +65,14 @@
                     </div>
                     <div class="flex justify-between items-center my-2" x-show="useVoucher">
                         <span class="text-gray">Voucher Discount</span>
-                        <span class="text-gray">-Rp<span x-text="new Intl.NumberFormat('en-ID').format(voucher)"></span></span>
+                        <span class="text-gray">-Rp<span x-text="(useVoucher) ? new Intl.NumberFormat('en-ID').format(voucherList.find((vc) => vc.id == voucher).actual_disc) : 0"></span></span>
                     </div>
                     <div class="flex justify-between items-center my-2">
                         <span class="font-bold text-lg">Total Pembayaran</span>
                         <span class="font-bold text-lg">Rp<span x-text="new Intl.NumberFormat('en-ID').format(totalPay)"></span></span>
                     </div>
-                    <hr class="border-dotted border-gray">
-                    <div class="flex gap-3 my-4 items-center">
+                    <hr class="border-dotted border-gray mb-2">
+                    <div class="flex gap-3 my-4 items-center" x-show="coin > 0">
                         <input type="checkbox" name="useCoin" class="w-5 h-5" value="Yes" x-model="useCoin">
                         <input type="hidden" name="coin" x-model="coin">
 {{--                        <label>--}}
@@ -81,10 +81,10 @@
 {{--                                <i class='bx bx-coin' ></i>--}}
 {{--                            </div>--}}
 {{--                        </label>--}}
-                        <label for="">Tukarkan 1500 Koin EcoTrip</label>
+                        <label for="">Tukarkan {{ \Illuminate\Support\Facades\Auth::user()->coin }} Koin EcoTrip</label>
                     </div>
                     <div x-data="{ modelOpen: false }">
-                        <div x-bind:class="(useVoucher) ? 'rounded border border-primary px-6 py-3 text-center text-primary cursor-pointer' : 'rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer' " @click="modelOpen =!modelOpen" x-text="(useVoucher) ? 'Voucher potongan Rp' + new Intl.NumberFormat('en-ID').format(voucher) + ' terpakai' : 'Voucher'">Voucher</div>
+                        <div x-bind:class="(useVoucher) ? 'rounded border border-primary px-6 py-3 text-center text-primary cursor-pointer' : 'rounded border border-gray/25 px-6 py-3 text-center text-gray cursor-pointer' " @click="modelOpen =!modelOpen" x-text="(useVoucher) ? 'Voucher potongan Rp' + new Intl.NumberFormat('en-ID').format(voucherList.find((vc) => vc.id == voucher).actual_disc) + ' terpakai' : 'Voucher'">Voucher</div>
                         <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
                             <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
                                 <div x-cloak @click="modelOpen = false" x-show="modelOpen"
@@ -109,39 +109,30 @@
                                     <div class="flex items-center justify-between space-x-4">
                                         <h1 class="text-xl font-medium text-gray-800 ">Voucher yang kamu miliki</h1>
 
-                                        <button @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                        <button type="button" @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                             </svg>
                                         </button>
                                     </div>
 
-                                    <div class="mt-8 flex flex-col gap-4">
-                                        <label>
-                                            <input class="sr-only peer" name="voucher" type="radio" value="10000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
-                                                <div class="text-xl font-bold">Voucher Pengguna Baru 23%</div>
-                                                <p class="text-sm text-gray">Diskon s/d Rp7rb Min. Pembelian Rp30rb</p>
-                                            </div>
-                                        </label>
-                                        <label>
-                                            <input class="sr-only peer" name="voucher" type="radio" value="5000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
-                                                <div class="text-xl font-bold">Voucher Pengguna Baru 18%</div>
-                                                <p class="text-sm text-gray">Diskon s/d Rp2rb Min. Pembelian Rp30rb</p>
-                                            </div>
-                                        </label>
-                                        <label>
-                                            <input class="sr-only peer" name="voucher" type="radio" value="1000" x-model="voucher" />
-                                            <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
-                                                <div class="text-xl font-bold">Voucher Pengguna Baru 10%</div>
-                                                <p class="text-sm text-gray">Diskon s/d Rp500 Min. Pembelian Rp30rb</p>
-                                            </div>
-                                        </label>
+                                    <div class="mt-8 flex flex-col gap-4" x-show="voucherList.length > 0">
+                                        <template x-for="vc in voucherList" :key="vc.id">
+                                            <label>
+                                                <input class="sr-only peer" name="voucher" type="radio" :value="vc.id" x-model="voucher" />
+                                                <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
+                                                    <div class="text-xl font-bold" x-text="vc.name"></div>
+                                                    <p class="text-sm text-gray" x-text="vc.description"></p>
+                                                </div>
+                                            </label>
+                                        </template>
                                         <div class="flex justify-center gap-6 mt-4">
                                             <button type="button" class="px-4 py-2 text-gray" @click="voucher = 0; useVoucher = false">Hapus Voucher</button>
                                             <button type="button" class="px-4 py-2 bg-primary text-white rounded-lg" @click="modelOpen = false; useVoucher = ((voucher == 0) ? false : true)">Pakai</button>
                                         </div>
+                                    </div>
+                                    <div class="mt-8 flex flex-col gap-4" x-show="voucherList.length == 0">
+                                        <p>Tidak ada voucher yang bisa dipakai</p>
                                     </div>
                                 </div>
                             </div>

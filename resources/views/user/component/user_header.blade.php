@@ -6,7 +6,7 @@
             </div>
             <ul class="flex gap-8">
                 <li class="list-none"><a href="#" class="text-gray flex justify-center items-center gap-2"><i class='bx bxs-bell text-2xl'></i></a></li>
-                <li class="list-none"><a href="#" class="text-coin flex justify-center items-center gap-2"><i class='bx bx-coin text-2xl' ></i> {{ (!\Illuminate\Support\Facades\Auth::user()) ? "0" : number_format(\Illuminate\Support\Facades\Auth::user()->koin) }}</a></li>
+                <li class="list-none"><a href="#" class="text-coin flex justify-center items-center gap-2"><i class='bx bx-coin text-2xl' ></i> {{ (!\Illuminate\Support\Facades\Auth::user()) ? "0" : number_format(\Illuminate\Support\Facades\Auth::user()->coin) }}</a></li>
                 <li class="list-none"><a href="#" class="text-gray flex justify-center items-center gap-2"><i class='bx bxs-heart text-2xl'></i> Wishlist</a></li>
                 <li class="list-none"><a href="#" class="text-gray flex justify-center items-center gap-2"><i class='bx bx-map-alt text-2xl'></i> My Trip</a></li>
                 <li class="list-none"><a href="{{ route('logout') }}" class="text-gray flex justify-center items-center gap-2"><i class='bx bxs-user-circle text-2xl'></i> My Profile <i class='bx bx-chevron-down text-lg' ></i></a></li>

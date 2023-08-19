@@ -38,6 +38,4 @@ Route::get('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataControll
 Route::post('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananPayment'])->name('pemesananWisata3');
 Route::get('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananPayment'])->name('viewPemesananWisata3');
 
-Route::get('/success', function () {
-    return view('user.success');
-})->name('success');
+Route::get('/success', [\App\Http\Controllers\PemesananWisataController::class, 'viewPesananSuccess'])->name('success');
