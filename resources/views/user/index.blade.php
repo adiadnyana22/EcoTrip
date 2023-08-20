@@ -3,7 +3,7 @@
 @section('title', 'EcoTrip')
 
 @section('content')
-    <section class="mt-12 mb-32">
+    <section class="mt-12 mb-6">
         <div class="container mx-auto">
             <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false }'>
                 <div class="carousel-cell">
@@ -22,12 +22,33 @@
         </div>
     </section>
 
-    <section class="py-12">
+    <section class="py-6">
         <div class="container mx-auto">
+            <div class="rounded-lg text-white px-12 py-8" style="background: linear-gradient(213deg, rgba(113, 152, 79, 0.50) 0%, rgba(0, 0, 0, 0.00) 100%), #134B40;">
+                <h1 class="text-3xl font-bold mb-2">Apa itu Eco Trip?</h1>
+                <p>
+                    EcoTrip merupakan usaha berbasis digital yang bergerak dalam bidang online travel agent (OTA). Kehadiran EcoTrip berupaya sebagai pihak yang menjembatani para wisatawan dan pengelola tempat wisata untuk dapat saling berusaha menerapkan konsep ekowisata demi terciptanya pelestarian lingkungan alam dan tempat wisata yang berkelanjutan.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-6">
+        <div class="container mx-auto">
+            <div class="flex flex-col gap-2 py-3 text-center mb-12">
+                <h2 class="text-primary text-3xl font-bold">Pilih sesuai kebutuhanmu!</h2>
+                <p>
+                    EcoTrip menyediakan fasilitas yang berguna untuk kamu,
+                </p>
+            </div>
             <div class="flex justify-center items-center gap-16 flex-wrap">
                 <a href="{{ route('wisataList') }}" class="flex justify-center items-center flex-col gap-5">
                     <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Eco Wisata" class="w-10">
                     <div class="text-lg">EcoWisata</div>
+                </a>
+                <a href="{{ route('exploreList') }}" class="flex justify-center items-center flex-col gap-5">
+                    <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Eco Explore" class="w-10">
+                    <div class="text-lg">EcoExplore</div>
                 </a>
                 <a href="#" class="flex justify-center items-center flex-col gap-5">
                     <img src="{{ asset('assets/user/images/homeEcoHotelIcon.svg') }}" alt="Eco Hotel" class="w-10">
@@ -47,8 +68,13 @@
 
     <section class="py-6">
         <div class="container mx-auto">
-            <div class="flex justify-between py-3">
-                <h2 class="text-4xl text-primary font-bold">EcoExplore</h2>
+            <div class="flex justify-between items-end py-3">
+                <div>
+                    <h2 class="text-4xl text-primary font-bold">EcoExplore</h2>
+                    <p class="text-sm text-gray mb-1">
+                        Jelajahi destinasi wisata dengan pilihan open trip atau private trip sekarang!
+                    </p>
+                </div>
                 <a href="#">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
@@ -100,8 +126,13 @@
 
     <section class="py-6">
         <div class="container mx-auto">
-            <div class="flex justify-between py-3">
-                <h2 class="text-4xl text-primary font-bold">Artikel Terkini</h2>
+            <div class="flex justify-between items-end py-3">
+                <div>
+                    <h2 class="text-4xl text-primary font-bold">Artikel Terkini</h2>
+                    <p class="text-sm text-gray mb-1">
+                        Ketahui informasi terkini melalui artikel dibawah ini!
+                    </p>
+                </div>
                 <a href="#">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
@@ -127,7 +158,7 @@
         </div>
     </section>
 
-    <section class="py-24">
+    <section class="py-12">
         <div class="container mx-auto">
             <div class="flex justify-between items-center gap-12">
                 <h2 class="text-4xl">EcoTrip Provide<br><strong>Best Ecotourism</strong><br>Experiences Trip</h2>
@@ -149,7 +180,42 @@
         </div>
     </section>
 
-    <section class="py-24">
+    <section class="py-12">
+        <div class="container mx-auto">
+            <h2 class="text-center text-5xl font-bold mb-4">FAQ</h2>
+            <ul>
+                <li x-data="{ open: false }">
+                    <div class="cursor-pointer flex justify-between items-center px-8 py-4 bg-gray border border-black" @click="open = ! open">
+                        <div class="text-xl">Apa itu EcoWisata?</div>
+                        <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
+                    </div>
+                    <div class="bg-gray/25 px-8 py-4" x-show="open">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi, debitis delectus dolorum ducimus, eligendi est et illo ipsum labore nisi numquam perspiciatis quaerat quas quisquam sint vero, voluptate voluptatem.
+                    </div>
+                </li>
+                <li x-data="{ open: false }">
+                    <div class="cursor-pointer flex justify-between items-center px-8 py-4 bg-gray border border-black" @click="open = ! open">
+                        <div class="text-xl">Bagaimana Cara memesan EcoExplore?</div>
+                        <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
+                    </div>
+                    <div class="bg-gray/25 px-8 py-4" x-show="open">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusamus alias consequatur deserunt, esse laboriosam quisquam vero? A ab culpa debitis dicta doloremque doloribus eveniet, explicabo ipsum mollitia officia quaerat vero?
+                    </div>
+                </li>
+                <li x-data="{ open: false }">
+                    <div class="cursor-pointer flex justify-between items-center px-8 py-4 bg-gray border border-black" @click="open = ! open">
+                        <div class="text-xl">Apa itu EcoWisata?</div>
+                        <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
+                    </div>
+                    <div class="bg-gray/25 px-8 py-4" x-show="open">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, aspernatur consequatur delectus distinctio dolores facilis minima necessitatibus nihil perferendis placeat porro similique soluta vitae. Culpa deleniti expedita labore recusandae soluta!
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="py-12">
         <div class="container mx-auto">
             <div class="px-24 py-16 rounded-lg h-96 flex justify-end flex-col" style="background: linear-gradient(213deg, rgba(113, 152, 79, 0.50) 0%, rgba(0, 0, 0, 0.00) 100%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
@@ -163,4 +229,12 @@
             </div>
         </div>
     </section>
+
+    <a href="https://wa.me/+6281246868369" target="_blank" class="fixed bottom-8 right-8 bg-primary w-16 h-16 flex justify-center items-center rounded-full">
+        <i class='bx bxl-whatsapp text-3xl text-white'></i>
+    </a>
+@endsection
+
+@section('footExtention')
+    <script src="//unpkg.com/alpinejs" defer></script>
 @endsection

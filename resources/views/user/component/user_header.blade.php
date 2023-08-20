@@ -11,7 +11,7 @@
                 <li class="list-none"><a href="#" class="text-gray flex justify-center items-center gap-2"><i class='bx bx-map-alt text-2xl'></i> My Trip</a></li>
                 <li class="list-none"><a href="{{ route('logout') }}" class="text-gray flex justify-center items-center gap-2"><i class='bx bxs-user-circle text-2xl'></i> My Profile <i class='bx bx-chevron-down text-lg' ></i></a></li>
                 @if(!\Illuminate\Support\Facades\Auth::user())
-                    <li class="list-none"><a href="#" class="rounded py-2 px-4 text-white" style="background: linear-gradient(218deg, #71984F 0%, rgba(113, 152, 79, 0.00) 100%), #134B40;">Register</a></li>
+                    <li class="list-none"><a href="{{ route('login') }}" class="rounded py-2 px-4 text-white" style="background: linear-gradient(218deg, #71984F 0%, rgba(113, 152, 79, 0.00) 100%), #134B40;">Register</a></li>
                 @endif
             </ul>
         </nav>
