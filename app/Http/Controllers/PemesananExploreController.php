@@ -2,44 +2,45 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Order;
-use App\Models\OrderCustomerDetail;
+use App\Models\Explore;
+use App\Models\MeetingPoint;
+use App\Models\OrderExplore;
+use App\Models\OrderExploreCustomerDetail;
 use App\Models\User;
 use App\Models\Voucher;
 use App\Models\VoucherUse;
-use App\Models\Wisata;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
-class PemesananWisataController extends Controller
+class PemesananExploreController extends Controller
 {
     public function mtdPemesananFromDetail(Request $request) {
         $validateReq = $request->validate([
-            'wisata_id' => 'required|numeric',
+            'explore_id' => 'required|numeric',
             'date' => 'required',
             'qty' => 'required|numeric',
         ]);
 
-        $wisata = Wisata::where('id', '=', $request->wisata_id)->first();
+        $explore = Explore::where('id', '=', $request->explore_id)->first();
 
-        Session::put('wisata', $wisata);
+        Session::put('explore', $explore);
         Session::put('date', $request->date);
         Session::put('qty', $request->qty);
         Session::put('transaction', 1);
 
-        return redirect()->route('viewPemesananWisata1');
+        return redirect()->route('viewPemesananExplore1');
     }
 
     public function viewPemesananDataDiri() {
-        $wisata = Session::get('wisata');
+        $explore = Session::get('explore');
         $date = Session::get('date');
         $qty = Session::get('qty');
 
         if(!Session::get('transaction') || !Auth::check()) return redirect()->route('home');
 
-        return view('user.pemesanan_wisata')
-            ->with('wisata', $wisata)
+        return view('user.pemesanan_explore')
+            ->with('explore', $explore)
             ->with('date', $date)
             ->with('qty', $qty);
     }
@@ -48,7 +49,7 @@ class PemesananWisataController extends Controller
         if(!Session::get('transaction') || !Auth::check()) return redirect()->route('home');
 
         $validateReq = $request->validate([
-            'wisata_id' => 'required|numeric',
+            'explore_id' => 'required|numeric',
             'date' => 'required',
             'qty' => 'required|numeric',
         ]);
@@ -63,7 +64,7 @@ class PemesananWisataController extends Controller
             ]);
         }
 
-        $wisata = Wisata::where('id', '=', $request->wisata_id)->first();
+        $explore = Explore::where('id', '=', $request->explore_id)->first();
 
         $pemesan = array();
         $total_price = 0;
@@ -77,20 +78,56 @@ class PemesananWisataController extends Controller
                 'nationality' =>  $request['nationality'.($i+1)],
             ];
 
-            $total_price += ($request['nationality'.($i+1)] == 0) ? $wisata->local_price : $wisata->foreign_price;
+            $total_price += ($request['nationality'.($i+1)] == 0) ? $explore->local_price : $explore->foreign_price;
         }
 
         Session::put('pemesan', $pemesan);
         Session::put('total_price', $total_price);
 
-        return redirect()->route('viewPemesananWisata2');
+        return redirect()->route('viewPemesananExplore2');
+    }
+
+    public function viewPemesananMeetingPoint() {
+        $explore = Session::get('explore');
+        $date = Session::get('date');
+        $qty = Session::get('qty');
+        $meeting_point = MeetingPoint::all();
+
+        if(!Session::get('transaction') || !Auth::check()) return redirect()->route('home');
+
+        $meetingPointList = array();
+        foreach ($meeting_point as $mp){
+            array_push($meetingPointList, array("id" => $mp->id, "title" => $mp->title, "description" => $mp->description, "mapIframe" => substr($mp->mapIframe, strpos($mp->mapIframe, "\"") + 1, strpos($mp->mapIframe, "\"", strpos($mp->mapIframe, "\"") + 1) - 1 - strpos($mp->mapIframe, "\""))));
+        }
+
+        return view('user.pemesanan2_explore')
+            ->with('explore', $explore)
+            ->with('date', $date)
+            ->with('qty', $qty)
+            ->with('meeting_point', $meetingPointList);
+    }
+
+    public function mtdPemesananMeetingPoint(Request $request) {
+        $validateReq = $request->validate([
+            'explore_id' => 'required|numeric',
+            'date' => 'required',
+            'qty' => 'required|numeric',
+            'meeting_point_id' => 'required|numeric'
+        ]);
+
+        $meeting_point = MeetingPoint::where('id', '=', $request->meeting_point_id)->first();
+
+        Session::put('meeting_point', $meeting_point);
+
+        return redirect()->route('viewPemesananExplore3');
     }
 
     public function viewPemesananConfirm() {
-        $wisata = Session::get('wisata');
+        $explore = Session::get('explore');
         $date = Session::get('date');
         $qty = Session::get('qty');
         $pemesan = Session::get('pemesan');
+        $meeting_point = Session::get('meeting_point');
         $total_price = Session::get('total_price');
         $voucher = User::where('id', '=', Auth::user()->id)->first()->unusedVouchers();
 
@@ -101,11 +138,12 @@ class PemesananWisataController extends Controller
             array_push($voucherList, array("id" => $vc->id, "name" => $vc->name, "description" => $vc->description, "percentage" => $vc->percentage, "max_nominal" => $vc->max_nominal, "actual_disc" => min($vc->percentage/100 * $total_price, $vc->max_nominal)));
         }
 
-        return view('user.pemesanan2_wisata')
-            ->with('wisata', $wisata)
+        return view('user.pemesanan3_explore')
+            ->with('explore', $explore)
             ->with('date', $date)
             ->with('qty', $qty)
             ->with('pemesan', $pemesan)
+            ->with('meeting_point', $meeting_point)
             ->with('total_price', $total_price)
             ->with('voucher', $voucherList);
     }
@@ -114,7 +152,7 @@ class PemesananWisataController extends Controller
         if(!Session::get('transaction') || !Auth::check()) return redirect()->route('home');
 
         $validateReq = $request->validate([
-            'wisata_id' => 'required|numeric',
+            'explore_id' => 'required|numeric',
             'date' => 'required',
             'qty' => 'required|numeric',
         ]);
@@ -132,7 +170,8 @@ class PemesananWisataController extends Controller
         $kode_unik = "".rand(0, 9).rand(0, 9).rand(0, 9);
         $grand_total = $request->total_pay + (int) $kode_unik;
 
-        $wisata_id = Session::get('wisata')->id;
+        $explore_id = Session::get('explore')->id;
+        $meeting_point_id = Session::get('meeting_point')->id;
         $qty = Session::get('qty');
         $date = date('d-m-y', strtotime(Session::get('date')));
         $total_price = Session::get('total_price');
@@ -140,9 +179,10 @@ class PemesananWisataController extends Controller
         $coin = ($request->useCoin) ? $request->coin : 0;
 
         // Add to table Pesanan
-        $pesanan = new Order();
-        $pesanan->wisata_id = $wisata_id;
+        $pesanan = new OrderExplore();
+        $pesanan->explore_id = $explore_id;
         $pesanan->user_id = Auth::user()->id;
+        $pesanan->meeting_point_id = $meeting_point_id;
         $pesanan->qty = $qty;
         $pesanan->date = $date;
         $pesanan->total_ticket_price = $total_price;
@@ -156,13 +196,13 @@ class PemesananWisataController extends Controller
         // Add to table DataDiriPesanan
         $pemesan = Session::get('pemesan');
         foreach ($pemesan as $ps) {
-            $pemesan = new OrderCustomerDetail();
+            $pemesan = new OrderExploreCustomerDetail();
             $pemesan->name = $ps['name'];
             $pemesan->email = $ps['email'];
             $pemesan->gender = $ps['gender'];
             $pemesan->telp = $ps['telp'];
             $pemesan->nationality = $ps['nationality'];
-            $pemesan->order_id = $pesanan->id;
+            $pemesan->order_explore_id = $pesanan->id;
             $pemesan->save();
         }
 
@@ -188,13 +228,13 @@ class PemesananWisataController extends Controller
         Session::put('kode_unik', $kode_unik);
         Session::put('grand_total', $grand_total);
 
-        return redirect()->route('viewPemesananWisata3');
+        return redirect()->route('viewPemesananExplore4');
     }
 
     public function viewPemesananPayment() {
         if(!Session::get('transaction') || !Auth::check()) return redirect()->route('home');
 
-        $wisata = Session::get('wisata');
+        $explore = Session::get('explore');
         $date = Session::get('date');
         $qty = Session::get('qty');
         $total_price = Session::get('total_price');
@@ -205,8 +245,8 @@ class PemesananWisataController extends Controller
 
         Session::forget('transaction');
 
-        return view('user.pemesanan3_wisata')
-            ->with('wisata', $wisata)
+        return view('user.pemesanan4_explore')
+            ->with('explore', $explore)
             ->with('date', $date)
             ->with('qty', $qty)
             ->with('total_price', $total_price)
@@ -217,7 +257,7 @@ class PemesananWisataController extends Controller
     }
 
     public function viewPesananSuccess() {
-        Session::forget('wisata');
+        Session::forget('explore');
         Session::forget('date');
         Session::forget('qty');
         Session::forget('total_price');
@@ -225,6 +265,7 @@ class PemesananWisataController extends Controller
         Session::forget('kode_unik');
         Session::forget('grand_total');
         Session::forget('pemesan');
+        Session::forget('meeting_point');
 
         return view('user.success');
     }

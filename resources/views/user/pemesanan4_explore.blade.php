@@ -10,7 +10,8 @@
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
             </div>
             <div class="my-12 shadow px-6 py-4 rounded-xl">
-                <h2>{{ $wisata->name }}</h2>
+                <span class="rounded-full py-2.5 px-5 text-white mb-3 inline-block" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">@if($explore->type == 0) {{ "Private Trip" }} @elseif($explore->type == 1) {{ "Open Trip" }} @endif</span>
+                <h2>{{ $explore->name }}</h2>
                 <div class="flex justify-between items-center text-gray">
                     <p>{{ \Carbon\Carbon::parse($date)->isoFormat('d MMM YYYY') }}</p>
                     <p>{{ $qty }} pax</p>
@@ -25,11 +26,15 @@
                     </li>
                     <li class="flex items-center gap-8 relative z-10">
                         <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">2</div>
-                        <div class="text-lg">Detail Pemesanan</div>
+                        <div class="text-lg text-gray">Meeting Point</div>
                     </li>
                     <li class="flex items-center gap-8 relative z-10">
                         <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">3</div>
-                        <div class="text-lg">Konfirmasi dan Pembayaran</div>
+                        <div class="text-lg text-gray">Detail Pemesanan</div>
+                    </li>
+                    <li class="flex items-center gap-8 relative z-10">
+                        <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">4</div>
+                        <div class="text-lg text-gray">Konfirmasi dan Pembayaran</div>
                     </li>
                     <div class="absolute left-5 top-4 border-l-2 border-dotted border-gray z-0" style="height: calc(100% - 2rem)"></div>
                 </ul>
@@ -56,7 +61,7 @@
                 </div>
                 <span class="text-gray ml-1 font-medium text-lg block mb-2 mt-8">INFORMASI TIKET</span>
                 <div class="bg-white rounded-lg shadow mb-5 px-6 py-4">
-                    <h2 class="font-medium text-xl mb-6">{{ $wisata->name }}</h2>
+                    <h2 class="font-medium text-xl mb-6">{{ $explore->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
                         <span class="text-gray">Rp{{ number_format($total_price) }}</span>
@@ -81,7 +86,7 @@
                         <span class="font-bold text-lg">Total Pembayaran</span>
                         <span class="font-bold text-lg">Rp{{ number_format($grand_total) }}</span>
                     </div>
-                    <a href="{{ route('success') }}" class="rounded bg-primary px-4 py-3 text-center text-white block w-full mb-2 mt-8">Saya Sudah Bayar</a>
+                    <a href="{{ route('exploreSuccess') }}" class="rounded bg-primary px-4 py-3 text-center text-white block w-full mb-2 mt-8">Saya Sudah Bayar</a>
                 </div>
             </div>
         </div>

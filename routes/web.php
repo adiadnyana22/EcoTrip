@@ -38,4 +38,17 @@ Route::get('/wisata/pemesanan/2', [\App\Http\Controllers\PemesananWisataControll
 Route::post('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananPayment'])->name('pemesananWisata3');
 Route::get('/wisata/pemesanan/3', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananPayment'])->name('viewPemesananWisata3');
 
-Route::get('/success', [\App\Http\Controllers\PemesananWisataController::class, 'viewPesananSuccess'])->name('success');
+Route::post('/explore/pemesanan/1', [\App\Http\Controllers\PemesananExploreController::class, 'mtdPemesananFromDetail'])->name('pemesananExplore1');
+Route::get('/explore/pemesanan/1', [\App\Http\Controllers\PemesananExploreController::class, 'viewPemesananDataDiri'])->name('viewPemesananExplore1');
+Route::post('/explore/pemesanan/2', [\App\Http\Controllers\PemesananExploreController::class, 'mtdPemesananDataDiri'])->name('pemesananExplore2');
+Route::get('/explore/pemesanan/2', [\App\Http\Controllers\PemesananExploreController::class, 'viewPemesananMeetingPoint'])->name('viewPemesananExplore2');
+Route::post('/explore/pemesanan/3', [\App\Http\Controllers\PemesananExploreController::class, 'mtdPemesananMeetingPoint'])->name('pemesananExplore3');
+Route::get('/explore/pemesanan/3', [\App\Http\Controllers\PemesananExploreController::class, 'viewPemesananConfirm'])->name('viewPemesananExplore3');
+Route::post('/explore/pemesanan/4', [\App\Http\Controllers\PemesananExploreController::class, 'mtdPemesananPayment'])->name('pemesananExplore4');
+Route::get('/explore/pemesanan/4', [\App\Http\Controllers\PemesananExploreController::class, 'viewPemesananPayment'])->name('viewPemesananExplore4');
+
+Route::get('explore/pemesanan/success', [\App\Http\Controllers\PemesananExploreController::class, 'viewPesananSuccess'])->name('exploreSuccess');
+
+Route::get('/wisata/pemesanan/success', [\App\Http\Controllers\PemesananWisataController::class, 'viewPesananSuccess'])->name('wisataSuccess');
+
+

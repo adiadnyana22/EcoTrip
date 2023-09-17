@@ -142,11 +142,126 @@
                     <button x-bind:class="'rounded px-4 py-2 text-center text-white block w-full mt-4 mb-2 ' + ((isTaCChecked) ? 'bg-primary' : 'bg-gray')" x-bind:disabled="!isTaCChecked">Bayar</button>
                 </div>
                 <div class="flex items-center gap-3 ml-1">
-                    <input type="checkbox" name="sk" class="w-5 h-5" value="Yes" x-model="isTaCChecked">
                     <input type="hidden" name="wisata_id" value="{{ $wisata->id }}">
                     <input type="hidden" name="date" value="{{ $date }}">
                     <input type="hidden" name="qty" value="{{ $qty }}">
-                    <label for="">Saya menyetujui syarat dan ketentuan</label>
+                    <div x-data="{ modelOpen: false }">
+                        <div class="flex items-center gap-3 ml-1">
+                            <input type="checkbox" id="sk" name="sk" class="w-5 h-5" value="Yes" x-model="isTaCChecked" @click="$event.preventDefault(); modelOpen = true">
+                            <label for="sk">Saya menyetujui syarat dan ketentuan</label>
+                        </div>
+                        <div x-show="modelOpen" class="fixed inset-0 z-50 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+                            <div class="flex items-end justify-center min-h-screen px-4 text-center md:items-center sm:block sm:p-0">
+                                <div x-cloak @click="modelOpen = false" x-show="modelOpen"
+                                     x-transition:enter="transition ease-out duration-300 transform"
+                                     x-transition:enter-start="opacity-0"
+                                     x-transition:enter-end="opacity-100"
+                                     x-transition:leave="transition ease-in duration-200 transform"
+                                     x-transition:leave-start="opacity-100"
+                                     x-transition:leave-end="opacity-0"
+                                     class="fixed inset-0 transition-opacity bg-gray bg-opacity-40" aria-hidden="true"
+                                ></div>
+
+                                <div x-cloak x-show="modelOpen"
+                                     x-transition:enter="transition ease-out duration-300 transform"
+                                     x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                     x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100"
+                                     x-transition:leave="transition ease-in duration-200 transform"
+                                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100"
+                                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                                     class="inline-block w-full max-w-xl p-8 my-20 overflow-hidden text-left transition-all transform bg-white rounded-lg shadow-xl 2xl:max-w-2xl"
+                                >
+                                    <div class="flex items-center justify-between space-x-4">
+                                        <h1 class="text-xl font-medium text-gray-800 ">Syarat dan ketentuan</h1>
+
+                                        <button type="button" @click="modelOpen = false" class="text-gray-600 focus:outline-none hover:text-gray-700">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <div class="mt-8 flex flex-col gap-4">
+                                        <strong>Syarat dan Ketentuan Aplikasi (General):</strong>
+                                        <ol type="1" style="list-style-type: decimal" class="ml-4">
+                                            <li>
+                                                <span>Penggunaan Aplikasi:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Aplikasi ini hanya boleh digunakan oleh individu yang berusia minimal 13 tahun atau sesuai batas usia hukum setempat.</li>
+                                                    <li>Pengguna harus memiliki akses internet dan perangkat kompatibel untuk menggunakan aplikasi.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Kepatuhan Hukum:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengguna wajib mematuhi semua hukum dan peraturan yang berlaku saat menggunakan aplikasi ini.</li>
+                                                    <li>Pengguna bertanggung jawab atas semua konten yang diunggah atau dibagikan melalui aplikasi.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Privasi dan Data Pengguna:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Aplikasi akan mengumpulkan dan menggunakan data pengguna sesuai dengan Kebijakan Privasi yang berlaku.</li>
+                                                    <li>Pengguna harus menyediakan data yang akurat dan bersedia untuk data tersebut digunakan sesuai dengan Kebijakan Privasi.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Konten Aplikasi:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengguna tidak diperbolehkan mengunggah, membagikan, atau menyebarkan konten yang ilegal, berbahaya, mengandung unsur kekerasan, atau melanggar hak kekayaan intelektual pihak ketiga.</li>
+                                                    <li>Pengguna tidak diperbolehkan menggunakan aplikasi untuk tujuan yang melanggar hukum atau merugikan pihak lain.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Keamanan Akun Pengguna:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengguna bertanggung jawab atas menjaga kerahasiaan informasi akun mereka dan harus segera memberitahukan jika ada pelanggaran keamanan.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Perubahan dan Penyimpangan:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengembang berhak untuk mengubah, memperbarui, atau menambahkan fitur aplikasi tanpa pemberitahuan sebelumnya.</li>
+                                                    <li>Penggunaan aplikasi setelah perubahan berarti penerimaan atas perubahan tersebut.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Layanan Pihak Ketiga:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Aplikasi dapat mengandung tautan atau mengintegrasikan layanan pihak ketiga. Syarat dan Ketentuan tersebut tidak berlaku untuk layanan pihak ketiga, dan pengguna harus membaca ketentuan masing-masing layanan pihak ketiga.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Tanggung Jawab Pengembang:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Aplikasi disediakan apa adanya dan pengguna menggunakannya atas risiko sendiri.</li>
+                                                    <li>Pengembang tidak bertanggung jawab atas kerugian atau kerusakan yang diakibatkan oleh penggunaan aplikasi ini.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Penghentian Akses:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengembang berhak untuk menghentikan akses pengguna ke aplikasi jika pengguna melanggar Syarat dan Ketentuan atau jika diperlukan oleh hukum.</li>
+                                                </ol>
+                                            </li>
+                                            <li>
+                                                <span>Komentar, Pertanyaan, dan Keluhan:</span>
+                                                <ol type="a" style="list-style-type: lower-alpha" class="ml-4">
+                                                    <li>Pengguna dapat mengirimkan komentar, pertanyaan, atau keluhan melalui kanal yang telah ditentukan oleh pengembang.</li>
+                                                </ol>
+                                            </li>
+                                        </ol>
+                                        <p>
+                                            Harap dicatat bahwa syarat dan ketentuan di atas bersifat umum dan bisa disesuaikan dengan jenis aplikasi yang digunakan. Pastikan untuk menyusun syarat dan ketentuan secara lengkap, transparan, dan sesuai dengan hukum yang berlaku di wilayah pengguna aplikasi.
+                                        </p>
+                                        <div class="flex justify-center gap-6 mt-4">
+                                            <button type="button" class="px-4 py-2 bg-primary text-white rounded-lg" @click="modelOpen = false; isTaCChecked = true">Saya mengerti dan setuju</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

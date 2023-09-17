@@ -40,18 +40,20 @@
 @section('content')
     <section class="py-12">
         <div class="container mx-auto">
+            <div class="my-5">
+                <img src="{{ asset('assets/user/images/wisata/'.$explore->picture) }}" alt="Wisata" class="w-full max-h-96 object-cover rounded-xl">
+                <div class="main-carousel mt-3" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false }'>
+                    @foreach($exploreImgList as $img)
+                        <div class="carousel-cell w-80 mr-3 max-h-32 object-cover">
+                            <img src="{{ asset('assets/user/images/wisata/'.$img->picture) }}" alt="Banner" class="w-full rounded-xl max-h-32 object-cover">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <div class="flex gap-12">
                 <div class="basis-3/5">
-                    <img src="{{ asset('assets/user/images/explore/'.$explore->picture) }}" alt="Explore" class="w-full max-h-96 object-cover">
-                    <div class="main-carousel mt-3" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false }'>
-                        @foreach($exploreImgList as $img)
-                            <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                                <img src="{{ asset('assets/user/images/explore/'.$img->picture) }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="pt-3 pb-6">
-                        <h1 class="text-4xl font-bold my-8">{{ $explore->name }}</h1>
+                    <div class="pb-6">
+                        <h1 class="text-4xl font-bold mt-6 mb-8">{{ $explore->name }}</h1>
                         <div class="flex items-center gap-8">
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
@@ -107,97 +109,106 @@
                     </div>
                 </div>
                 <div class="basis-2/5" x-data="{ count: 1, price: @json($explore->local_price) }">
-                    <div class="p-8 w-full shadow-lg rounded-xl sticky top-8">
-                        <p class="text-gray">PEMBELIAN TIKET</p>
-                        <h2 class="font-bold text-2xl my-2">{{ $explore->name }}</h2>
-                        <div class="flex justify-between flex-wrap items-center my-5">
-                            <label for="#">Pilih Tanggal</label>
-                            <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
-                                <div class="container mx-auto cursor-pointer">
-                                    <div class="w-64">
-                                        <div class="relative">
-                                            <input type="hidden" name="date" x-ref="date" :value="datepickerValue" />
-                                            <input type="text" x-on:click="showDatepicker = !showDatepicker" x-model="datepickerValue" x-on:keydown.escape="showDatepicker = false" class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none text-gray-600 font-medium focus:ring focus:ring-blue-600 focus:ring-opacity-50 cursor-pointer" placeholder="Select date" readonly />
+                    <div class="sticky top-8">
+                        <div class="mt-5">
+                            <span class="rounded-full py-2.5 px-5 text-white mb-3 inline-block" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">@if($explore->type == 0) {{ "Private Trip" }} @elseif($explore->type == 1) {{ "Open Trip" }} @endif</span>
+                        </div>
+                        <form action="{{ route('pemesananExplore1') }}" method="POST" class="p-8 w-full shadow-lg rounded-xl">
+                            @csrf
+                            <p class="text-gray">PEMBELIAN TIKET</p>
+                            <h2 class="font-bold text-2xl my-2">{{ $explore->name }}</h2>
+                            <div class="flex justify-between flex-wrap items-center my-5">
+                                <label for="#">Pilih Tanggal</label>
+                                <!-- Datepicker -->
+                                <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+                                    <div class="container mx-auto cursor-pointer">
+                                        <div class="w-64">
+                                            <div class="relative">
+                                                <input type="hidden" name="date" x-ref="date" :value="datepickerValue" />
+                                                <input type="text" x-on:click="showDatepicker = !showDatepicker" x-model="datepickerValue" x-on:keydown.escape="showDatepicker = false" class="w-full pl-4 pr-10 py-3 leading-none rounded-lg shadow-sm focus:outline-none text-gray-600 font-medium focus:ring focus:ring-blue-600 focus:ring-opacity-50 cursor-pointer" placeholder="Select date" readonly />
 
-                                            <div class="absolute top-0 right-0 px-3 py-2" x-on:click="showDatepicker = !showDatepicker">
-                                                <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                                </svg>
-                                            </div>
+                                                <div class="absolute top-0 right-0 px-3 py-2" x-on:click="showDatepicker = !showDatepicker">
+                                                    <svg class="h-6 w-6 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                                    </svg>
+                                                </div>
 
-                                            <!-- <div x-text="no_of_days.length"></div>
-                                                          <div x-text="32 - new Date(year, month, 32).getDate()"></div>
-                                                          <div x-text="new Date(year, month).getDay()"></div> -->
+                                                <!-- <div x-text="no_of_days.length"></div>
+                                                              <div x-text="32 - new Date(year, month, 32).getDate()"></div>
+                                                              <div x-text="new Date(year, month).getDay()"></div> -->
 
-                                            <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0" style="width: 17rem" x-show.transition="showDatepicker" @click.away="showDatepicker = false">
-                                                <div class="flex justify-between items-center mb-2">
-                                                    <div>
-                                                        <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
-                                                        <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
-                                                    </div>
-                                                    <div>
-                                                        <button type="button" class="focus:outline-none focus:shadow-outline transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-100 p-1 rounded-full" @click="if (month == 0) {
+                                                <div class="bg-white mt-12 rounded-lg shadow p-4 absolute top-0 left-0" style="width: 17rem" x-show.transition="showDatepicker" @click.away="showDatepicker = false">
+                                                    <div class="flex justify-between items-center mb-2">
+                                                        <div>
+                                                            <span x-text="MONTH_NAMES[month]" class="text-lg font-bold text-gray-800"></span>
+                                                            <span x-text="year" class="ml-1 text-lg text-gray-600 font-normal"></span>
+                                                        </div>
+                                                        <div>
+                                                            <button type="button" class="focus:outline-none focus:shadow-outline transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-100 p-1 rounded-full" @click="if (month == 0) {
 												year--;
 												month = 12;
 											} month--; getNoOfDays()">
-                                                            <svg class="h-6 w-6 text-gray-400 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-                                                            </svg>
-                                                        </button>
-                                                        <button type="button" class="focus:outline-none focus:shadow-outline transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-100 p-1 rounded-full" @click="if (month == 11) {
+                                                                <svg class="h-6 w-6 text-gray-400 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+                                                                </svg>
+                                                            </button>
+                                                            <button type="button" class="focus:outline-none focus:shadow-outline transition ease-in-out duration-100 inline-flex cursor-pointer hover:bg-gray-100 p-1 rounded-full" @click="if (month == 11) {
 												month = 0;
 												year++;
 											} else {
 												month++;
 											} getNoOfDays()">
-                                                            <svg class="h-6 w-6 text-gray-400 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-                                                </div>
-
-                                                <div class="flex flex-wrap mb-3 -mx-1">
-                                                    <template x-for="(day, index) in DAYS" :key="index">
-                                                        <div style="width: 14.26%" class="px-0.5">
-                                                            <div x-text="day" class="text-gray-800 font-medium text-center text-xs"></div>
+                                                                <svg class="h-6 w-6 text-gray-400 inline-flex" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                                                                </svg>
+                                                            </button>
                                                         </div>
-                                                    </template>
-                                                </div>
+                                                    </div>
 
-                                                <div class="flex flex-wrap -mx-1">
-                                                    <template x-for="blankday in blankdays">
-                                                        <div style="width: 14.28%" class="text-center border p-1 border-transparent text-sm"></div>
-                                                    </template>
-                                                    <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
-                                                        <div style="width: 14.28%" class="px-1 mb-1">
-                                                            <div @click="getDateValue(date)" x-text="date" class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100" :class="{
+                                                    <div class="flex flex-wrap mb-3 -mx-1">
+                                                        <template x-for="(day, index) in DAYS" :key="index">
+                                                            <div style="width: 14.26%" class="px-0.5">
+                                                                <div x-text="day" class="text-gray-800 font-medium text-center text-xs"></div>
+                                                            </div>
+                                                        </template>
+                                                    </div>
+
+                                                    <div class="flex flex-wrap -mx-1">
+                                                        <template x-for="blankday in blankdays">
+                                                            <div style="width: 14.28%" class="text-center border p-1 border-transparent text-sm"></div>
+                                                        </template>
+                                                        <template x-for="(date, dateIndex) in no_of_days" :key="dateIndex">
+                                                            <div style="width: 14.28%" class="px-1 mb-1">
+                                                                <div @click="getDateValue(date)" x-text="date" class="cursor-pointer text-center text-sm leading-none rounded-full leading-loose transition ease-in-out duration-100" :class="{
                       'border border-primary text-primary': isToday(date) == true,
                       'text-black hover:bg-primary hover:text-white': isToday(date) == false && isSelectedDate(date) == false,
                       'bg-primary/10 text-primary hover:bg-opacity-75': isSelectedDate(date) == true
                     }"></div>
-                                                        </div>
-                                                    </template>
+                                                            </div>
+                                                        </template>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <!-- Datepicker -->
                             </div>
-                        </div>
-                        <div class="flex justify-between flex-wrap items-center my-5">
-                            <label for="#">Jumlah Peserta</label>
-                            <div class="flex items-center gap-2">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.max(count - 1, 1)">-</button>
-                                <input type="number" x-model="count" class="w-12 text-center outline-none text-xl">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.min(count + 1, 10)">+</button>
+                            <div class="flex justify-between flex-wrap items-center my-5">
+                                <label for="#">Jumlah Peserta</label>
+                                <div class="flex items-center gap-2">
+                                    <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.max(count - 1, 1)">-</button>
+                                    <input type="number" x-model="count" name="qty" class="w-12 text-center outline-none text-xl">
+                                    <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.min(count + 1, 10)">+</button>
+                                </div>
                             </div>
-                        </div>
-                        <div class="py-5 flex justify-between items-center">
-                            <div class="text-gray text-xl font-bold">TOTAL HARGA</div>
-                            <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * price)"></span></strong>
-                        </div>
-                        <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
+                            <div class="py-5 flex justify-between items-center">
+                                <div class="text-gray text-xl font-bold">TOTAL HARGA</div>
+                                <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * price)"></span></strong>
+                            </div>
+                            <input type="hidden" name="explore_id" value="{{ $explore->id }}">
+                            <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -270,7 +281,7 @@
             return {
                 showDatepicker: false,
                 datepickerValue: "",
-                dateFormat: "DD/MM/YYYY",
+                dateFormat: "d MMM YYYY",
                 month: "",
                 year: "",
                 no_of_days: [],
@@ -312,6 +323,9 @@
                     }
                     if (this.dateFormat === "D d M, Y") {
                         return `${formattedDay} ${formattedDate} ${formattedMonthShortName} ${formattedYear}`; // Tue 02 Mar 2021
+                    }
+                    if (this.dateFormat === "d MMM YYYY") {
+                        return `${formattedDate} ${formattedMonthShortName} ${formattedYear}`; // Tue 02 Mar 2021
                     }
                     return `${formattedDay} ${formattedDate} ${formattedMonth} ${formattedYear}`;
                 },

@@ -44,18 +44,20 @@
 @section('content')
     <section class="py-12">
         <div class="container mx-auto">
+            <div class="my-5">
+                <img src="{{ asset('assets/user/images/wisata/'.$wisata->picture) }}" alt="Wisata" class="w-full max-h-96 object-cover rounded-xl">
+                <div class="main-carousel mt-3" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false }'>
+                    @foreach($wisataImgList as $img)
+                        <div class="carousel-cell w-80 mr-3 max-h-32 object-cover">
+                            <img src="{{ asset('assets/user/images/wisata/'.$img->picture) }}" alt="Banner" class="w-full rounded-xl max-h-32 object-cover">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
             <div class="flex gap-12">
                 <div class="basis-3/5">
-                    <img src="{{ asset('assets/user/images/wisata/'.$wisata->picture) }}" alt="Wisata" class="w-full max-h-96 object-cover">
-                    <div class="main-carousel mt-3" data-flickity='{ "cellAlign": "left", "contain": true, "pageDots": false }'>
-                        @foreach($wisataImgList as $img)
-                        <div class="carousel-cell w-2/5 mr-3 max-h-24 object-cover">
-                            <img src="{{ asset('assets/user/images/wisata/'.$img->picture) }}" alt="Banner" class="w-full rounded-xl max-h-24 object-cover">
-                        </div>
-                        @endforeach
-                    </div>
-                    <div class="pt-3 pb-6">
-                        <h1 class="text-4xl font-bold my-8">{{ $wisata->name }}</h1>
+                    <div class="pb-6">
+                        <h1 class="text-4xl font-bold mt-6 mb-8">{{ $wisata->name }}</h1>
                         <div class="flex items-center gap-8">
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
