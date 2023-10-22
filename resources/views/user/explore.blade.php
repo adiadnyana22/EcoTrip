@@ -5,13 +5,16 @@
 @section('content')
     <section class="py-12">
         <div class="container mx-auto">
-            <div class="flex justify-between py-5 mb-4">
-                <div class="flex items-center gap-24">
+            <div class="flex justify-between items-center py-5 mb-4">
+                <div class="flex items-center gap-16">
                     <a href="#"><i class='bx bx-chevron-left text-xl' ></i></a>
                     <h1 class="text-4xl font-bold flex items-center gap-8">
                         <img src="{{ asset('assets/user/images/exploreTitleIcon.svg') }}" alt="Eco Wisata" class="w-8">
                         <span>EcoExplore</span>
-                    </h1>
+                    </h1>  
+                    <p class="text-sm text-gray max-w-sm mt-2">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus tempore dolore sunt impedit!
+                    </p>
                     <div class="flex justify-center items-center gap-4">
                         <a href="#" class="rounded-full py-2 px-4 bg-blue text-white">Open Trip</a>
                         <a href="#" class="rounded-full py-2 px-4 text-gray border border-gray">Private Trip</a>

@@ -47,8 +47,19 @@ Route::get('/explore/pemesanan/3', [\App\Http\Controllers\PemesananExploreContro
 Route::post('/explore/pemesanan/4', [\App\Http\Controllers\PemesananExploreController::class, 'mtdPemesananPayment'])->name('pemesananExplore4');
 Route::get('/explore/pemesanan/4', [\App\Http\Controllers\PemesananExploreController::class, 'viewPemesananPayment'])->name('viewPemesananExplore4');
 
-Route::get('explore/pemesanan/success', [\App\Http\Controllers\PemesananExploreController::class, 'viewPesananSuccess'])->name('exploreSuccess');
+Route::get('/explore/pemesanan/success', [\App\Http\Controllers\PemesananExploreController::class, 'viewPesananSuccess'])->name('exploreSuccess');
 
 Route::get('/wisata/pemesanan/success', [\App\Http\Controllers\PemesananWisataController::class, 'viewPesananSuccess'])->name('wisataSuccess');
 
+Route::get('/waste/1', [\App\Http\Controllers\WasteController::class, 'viewTicketList'])->name('viewWaste1');
+Route::post('/waste/1', [\App\Http\Controllers\WasteController::class, 'mtdTicketSelected'])->name('mtdWaste1');
+Route::get('/waste/2', [\App\Http\Controllers\WasteController::class, 'viewUploadImage'])->name('viewWaste2');
+Route::post('/waste/2', [\App\Http\Controllers\WasteController::class, 'mtdUploadImage'])->name('mtdWaste2');
+Route::get('/waste/3', [\App\Http\Controllers\WasteController::class, 'viewReview'])->name('viewWaste3');
+Route::post('/waste/3', [\App\Http\Controllers\WasteController::class, 'mtdReview'])->name('mtdWaste3');
 
+Route::get('/waste/success', [\App\Http\Controllers\WasteController::class, 'viewSuccess'])->name('wasteSuccess');
+
+Route::get('/campaign', function () {
+    return view('user.campaign');
+});

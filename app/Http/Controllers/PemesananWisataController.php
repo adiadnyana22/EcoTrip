@@ -151,6 +151,7 @@ class PemesananWisataController extends Controller
         $pesanan->unique_code = $kode_unik;
         $pesanan->grand_total_price = $grand_total;
         $pesanan->status_code = 1;
+        $pesanan->waste_flag = 0;
         $pesanan->save();
 
         // Add to table DataDiriPesanan

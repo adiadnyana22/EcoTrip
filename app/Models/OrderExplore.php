@@ -19,6 +19,11 @@ class OrderExplore extends Model
         'coin',
         'unique_code',
         'grand_total_price',
-        'status_code',
+        'status_code', 
+        'waste_flag',
     ];
+
+    public function explore() {
+        return $this->belongsTo(Explore::class, 'explore_id', 'id');
+    }
 }

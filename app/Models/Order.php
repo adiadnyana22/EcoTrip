@@ -20,5 +20,10 @@ class Order extends Model
         'unique_code',
         'grand_total_price',
         'status_code',
+        'waste_flag',
     ];
+
+    public function wisata() {
+        return $this->belongsTo(Wisata::class, 'wisata_id', 'id');
+    }
 }

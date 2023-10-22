@@ -21,4 +21,7 @@ class Explore extends Model
         'itinerary'
     ];
 
+    public function order() {
+        return $this->hasMany(OrderExplore::class, 'explore_id', 'id');
+    }
 }

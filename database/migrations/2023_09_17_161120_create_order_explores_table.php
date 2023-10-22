@@ -25,7 +25,8 @@ return new class extends Migration
             $table->integer('coin');
             $table->integer('unique_code');
             $table->integer('grand_total_price');
-            $table->integer('status_code');
+            $table->integer('status_code'); // 1 for start order AND 2 for confirm by admin
+            $table->integer('waste_flag'); // 0 for no review AND 1 for review
             //$table->foreignId('bank_id');
             $table->timestamps();
         });

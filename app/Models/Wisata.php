@@ -19,4 +19,8 @@ class Wisata extends Model
         'activity',
         'includes',
     ];
+
+    public function order() {
+        return $this->hasMany(Order::class, 'wisata_id', 'id');
+    }
 }

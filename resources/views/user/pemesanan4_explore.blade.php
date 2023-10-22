@@ -26,15 +26,15 @@
                     </li>
                     <li class="flex items-center gap-8 relative z-10">
                         <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">2</div>
-                        <div class="text-lg text-gray">Meeting Point</div>
+                        <div class="text-lg">Meeting Point</div>
                     </li>
                     <li class="flex items-center gap-8 relative z-10">
                         <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">3</div>
-                        <div class="text-lg text-gray">Detail Pemesanan</div>
+                        <div class="text-lg">Detail Pemesanan</div>
                     </li>
                     <li class="flex items-center gap-8 relative z-10">
                         <div class="bg-primary w-10 h-10 text-white rounded-full flex justify-center items-center">4</div>
-                        <div class="text-lg text-gray">Konfirmasi dan Pembayaran</div>
+                        <div class="text-lg">Konfirmasi dan Pembayaran</div>
                     </li>
                     <div class="absolute left-5 top-4 border-l-2 border-dotted border-gray z-0" style="height: calc(100% - 2rem)"></div>
                 </ul>
