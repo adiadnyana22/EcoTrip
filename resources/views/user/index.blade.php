@@ -6,17 +6,17 @@
     <section class="mt-12 mb-6">
         <div class="container mx-auto">
             <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false }'>
-                <a href="/campaign" class="carousel-cell">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl">
+                <a href="/campaign" class="carousel-cell w-full">
+                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
                 </a>
-                <a href="#" class="carousel-cell">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl">
+                <a href="#" class="carousel-cell w-full">
+                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
                 </a>
-                <a href="#" class="carousel-cell">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl">
+                <a href="#" class="carousel-cell w-full">
+                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
                 </a>
-                <a href="#" class="carousel-cell">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl">
+                <a href="#" class="carousel-cell w-full">
+                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
                 </a>
             </div>
         </div>
@@ -137,7 +137,7 @@
                         Jelajahi destinasi wisata dengan pilihan open trip atau private trip sekarang!
                     </p>
                 </div>
-                <a href="#">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
+                <a href="#" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 <a href="#" class="transition hover:shadow-lg rounded-lg group">
@@ -195,7 +195,7 @@
                         Ketahui informasi terkini melalui artikel dibawah ini!
                     </p>
                 </div>
-                <a href="#">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
+                <a href="#" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 <a href="#" class="group">
@@ -220,10 +220,10 @@
         </div>
     </section>
 
-    <section class="py-16 my-6 bg-primary/5">
+    <section class="py-16 my-6">
         <div class="container mx-auto">
             <div class="flex justify-between items-center gap-12">
-                <h2 class="text-4xl text-primary max-w-lg">Pengalaman Ecotourism<br>Terbaik ada disini!</h2>
+                <h2 class="text-4xl text-primary max-w-lg">EcoTrip Provide<br><strong>Best Ecotourism</strong><br>Experiences Trip</h2>
                 <div class="grid grid-cols-3 gap-24 mx-auto">
                     <div class="flex justify-center items-center flex-col gap-2">
                         <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Icon" class="w-10">
@@ -274,25 +274,23 @@
                     </p>
                 </li>
             </ul>
+            <div class="flex items-center justify-center">
+                <a href="/faq" class="border border-primary px-12 py-2 rounded-full text-primary mt-5 transition hover:bg-primary hover:text-white">Lihat lebih banyak</a>
+            </div>
         </div>
     </section>
 
     <section class="py-12">
         <div class="container mx-auto">
-            <div class="px-24 py-16 rounded-lg h-96 flex justify-end flex-col" style="background: linear-gradient(213deg, rgba(113, 152, 79, 0.50) 0%, rgba(0, 0, 0, 0.00) 100%), #134B40;">
+            <div class="px-24 py-16 rounded-lg h-96 flex justify-end items-start flex-col" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
                 <p class="text-white mb-6">Ecotourism is The Future of Indonesia’s Travel</p>
-                <ul class="list-none flex gap-5">
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-instagram' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-twitter' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-facebook' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-play-store' ></i></a></li>
-                </ul>
+                <a href="#" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
             </div>
         </div>
     </section>
 
-    <a href="https://wa.me/+6281246868369" target="_blank" class="fixed bottom-8 right-8 bg-primary w-16 h-16 flex justify-center items-center rounded-full">
+    <a href="https://wa.me/+6281246868369" target="_blank" class="fixed bottom-8 right-8 bg-[#00D95F] w-16 h-16 flex justify-center items-center rounded-full">
         <i class='bx bxl-whatsapp text-3xl text-white'></i>
     </a>
 @endsection

@@ -63,3 +63,7 @@ Route::get('/waste/success', [\App\Http\Controllers\WasteController::class, 'vie
 Route::get('/campaign', function () {
     return view('user.campaign');
 });
+
+Route::get('/faq', function () {
+    return view('user.faq');
+});

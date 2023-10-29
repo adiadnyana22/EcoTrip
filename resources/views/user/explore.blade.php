@@ -5,16 +5,19 @@
 @section('content')
     <section class="py-12">
         <div class="container mx-auto">
-            <div class="flex justify-between items-center py-5 mb-4">
+            <div class="flex justify-between items-center py-5 mb-6">
                 <div class="flex items-center gap-16">
                     <a href="#"><i class='bx bx-chevron-left text-xl' ></i></a>
-                    <h1 class="text-4xl font-bold flex items-center gap-8">
-                        <img src="{{ asset('assets/user/images/exploreTitleIcon.svg') }}" alt="Eco Wisata" class="w-8">
-                        <span>EcoExplore</span>
-                    </h1>  
-                    <p class="text-sm text-gray max-w-sm mt-2">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus tempore dolore sunt impedit!
-                    </p>
+                    <div class="flex items-center gap-8">
+                        <img src="{{ asset('assets/user/images/exploreTitleIcon.svg') }}" alt="Eco Wisata" class="w-12">
+                        <div>
+                            <h1 class="text-3xl font-bold">EcoExplore</h1>
+                            <p class="text-sm text-gray max-w-sm mt-2 leading-tight">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus tempore dolore sunt impedit!
+                            </p>
+                        </div>
+                    </div>  
+                    
                     <div class="flex justify-center items-center gap-4">
                         <a href="#" class="rounded-full py-2 px-4 bg-blue text-white">Open Trip</a>
                         <a href="#" class="rounded-full py-2 px-4 text-gray border border-gray">Private Trip</a>
@@ -45,17 +48,12 @@
         </div>
     </section>
 
-    <section class="py-24">
+    <section class="py-12">
         <div class="container mx-auto">
-            <div class="px-24 py-16 rounded-lg h-96 flex justify-end flex-col" style="background: linear-gradient(213deg, rgba(113, 152, 79, 0.50) 0%, rgba(0, 0, 0, 0.00) 100%), #134B40;">
+            <div class="px-24 py-16 rounded-lg h-96 flex justify-end items-start flex-col" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
                 <p class="text-white mb-6">Ecotourism is The Future of Indonesia’s Travel</p>
-                <ul class="list-none flex gap-5">
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-instagram' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-twitter' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-facebook' ></i></a></li>
-                    <li><a href="#" class="rounded-full text-white border border-white flex justify-center items-center w-12 h-12 text-2xl"><i class='bx bxl-play-store' ></i></a></li>
-                </ul>
+                <a href="#" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
             </div>
         </div>
     </section>
