@@ -13,7 +13,7 @@
                 <span class="rounded-full py-2.5 px-5 text-white mb-3 inline-block" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">@if($explore->type == 0) {{ "Private Trip" }} @elseif($explore->type == 1) {{ "Open Trip" }} @endif</span>
                 <h2>{{ $explore->name }}</h2>
                 <div class="flex justify-between items-center text-gray">
-                    <p>{{ \Carbon\Carbon::parse($date)->isoFormat('d MMM YYYY') }}</p>
+                    <p>{{ $date }}</p>
                     <p>{{ $qty }} pax</p>
                 </div>
             </div>

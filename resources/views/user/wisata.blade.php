@@ -34,7 +34,7 @@
                             <div class="text-gray">{{ $wisata->location }}</div>
                         </div>
                         <h3 class="text-xl font-bold mt-3">{{ $wisata->name }}</h3>
-                        <p class="mb-2 text-sm">Rp {{ number_format($wisata->local_price, 2) }}</p>
+                        <p class="mb-2 text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $wisata->local_weekend_price : $wisata->local_price, 2) }}</p>
                     </div>
                 </a>
                 @endforeach

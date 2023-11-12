@@ -62,11 +62,11 @@
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/lokal.png') }}" alt="Lokal" class="w-52">
-                                <div class="absolute top-3 right-4 text-primary font-bold text-sm">Rp {{ number_format($wisata->local_price) }}</div>
+                                <div class="absolute top-3 right-4 text-primary font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $wisata->local_weekend_price : $wisata->local_price) }}</div>
                             </div>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/asing.png') }}" alt="Asing" class="w-52">
-                                <div class="absolute top-3 right-4 text-blue font-bold text-sm">Rp {{ number_format($wisata->foreign_price) }}</div>
+                                <div class="absolute top-3 right-4 text-blue font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $wisata->foreign_weekend_price : $wisata->foreign_price) }}</div>
                             </div>
                         </div>
                     </div>
@@ -100,7 +100,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="basis-2/5" x-data="{ count: 1, price: @json($wisata->local_price) }">
+                <div class="basis-2/5" x-data="{ count: 1, price: @json((Carbon\Carbon::now()->isWeekend()) ? $wisata->local_weekend_price : $wisata->local_price) }">
                     <form method="POST" action="{{ route('pemesananWisata1') }}" class="p-8 w-full shadow-lg rounded-xl sticky top-8">
                         @csrf
                         <p class="text-gray">PEMBELIAN TIKET</p>

@@ -12,7 +12,7 @@
             <div class="my-12 shadow px-6 py-4 rounded-xl">
                 <h2>{{ $wisata->name }}</h2>
                 <div class="flex justify-between items-center text-gray">
-                    <p>{{ \Carbon\Carbon::parse($date)->isoFormat('d MMM YYYY') }}</p>
+                    <p>{{ $date }}</p>
                     <p>{{ $qty }} pax</p>
                 </div>
             </div>

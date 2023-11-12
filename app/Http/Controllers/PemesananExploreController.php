@@ -9,6 +9,7 @@ use App\Models\OrderExploreCustomerDetail;
 use App\Models\User;
 use App\Models\Voucher;
 use App\Models\VoucherUse;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -78,7 +79,7 @@ class PemesananExploreController extends Controller
                 'nationality' =>  $request['nationality'.($i+1)],
             ];
 
-            $total_price += ($request['nationality'.($i+1)] == 0) ? $explore->local_price : $explore->foreign_price;
+            $total_price += ($request['nationality'.($i+1)] == 0) ? (Carbon::now()->isWeekend() ? $explore->local_weekend_price : $explore->local_price) : (Carbon::now()->isWeekend() ? $explore->foreign_weekend_price : $explore->foreign_price);
         }
 
         Session::put('pemesan', $pemesan);

@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('picture');
             $table->integer('local_price');
+            $table->integer('local_weekend_price');
             $table->integer('foreign_price');
+            $table->integer('foreign_weekend_price');
             $table->string('location');
             $table->integer('type'); // 0 for close trip and 1 for open trip
             $table->string('description', 2000);

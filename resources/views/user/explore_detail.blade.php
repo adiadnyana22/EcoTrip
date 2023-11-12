@@ -58,11 +58,11 @@
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/lokal.png') }}" alt="Lokal" class="w-52">
-                                <div class="absolute top-3 right-5 text-primary font-bold text-sm">Rp {{ number_format($explore->local_price) }}</div>
+                                <div class="absolute top-3 right-4 text-primary font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $explore->local_weekend_price : $explore->local_price) }}</div>
                             </div>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/asing.png') }}" alt="Asing" class="w-52">
-                                <div class="absolute top-3 right-5 text-blue font-bold text-sm">Rp {{ number_format($explore->foreign_price) }}</div>
+                                <div class="absolute top-3 right-4 text-blue font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $explore->foreign_weekend_price : $explore->foreign_price) }}</div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="basis-2/5" x-data="{ count: 1, price: @json($explore->local_price) }">
+                <div class="basis-2/5" x-data="{ count: 1, price: @json((Carbon\Carbon::now()->isWeekend()) ? $explore->local_weekend_price : $explore->local_price) }">
                     <div class="sticky top-8">
                         <div class="mt-5">
                             <span class="rounded-full py-2.5 px-5 text-white mb-3 inline-block" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">@if($explore->type == 0) {{ "Private Trip" }} @elseif($explore->type == 1) {{ "Open Trip" }} @endif</span>

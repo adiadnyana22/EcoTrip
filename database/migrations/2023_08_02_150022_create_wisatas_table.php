@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('picture');
             $table->integer('local_price');
+            $table->integer('local_weekend_price');
             $table->integer('foreign_price');
+            $table->integer('foreign_weekend_price');
             $table->string('location');
             $table->string('description', 2000);
             $table->string('activity', 2000);
