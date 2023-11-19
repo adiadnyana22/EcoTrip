@@ -22,7 +22,7 @@ return new class extends Migration
             $table->integer('foreign_price');
             $table->integer('foreign_weekend_price');
             $table->string('location');
-            $table->integer('type'); // 0 for close trip and 1 for open trip
+            $table->integer('type'); // 0 for private trip and 1 for open trip
             $table->string('description', 2000);
             $table->string('activity', 2000);
             $table->string('includes', 2000);

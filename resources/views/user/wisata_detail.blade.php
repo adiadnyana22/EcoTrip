@@ -54,7 +54,7 @@
                     @endforeach
                 </div>
             </div>
-            <div class="flex gap-12">
+            <div class="flex gap-12" x-data="app()" x-init="[initDate(), getNoOfDays()]">
                 <div class="basis-3/5">
                     <div class="pb-6">
                         <h1 class="text-4xl font-bold mt-6 mb-8">{{ $wisata->name }}</h1>
@@ -62,11 +62,11 @@
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/lokal.png') }}" alt="Lokal" class="w-52">
-                                <div class="absolute top-3 right-4 text-primary font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $wisata->local_weekend_price : $wisata->local_price) }}</div>
+                                <div class="absolute top-3 right-4 text-primary font-bold text-sm" x-text="(isWeekend() ? 'Rp' + new Intl.NumberFormat('en-ID').format(weekendPrice) : 'Rp' + new Intl.NumberFormat('en-ID').format(weekdayPrice))"></div>
                             </div>
                             <div class="relative">
                                 <img src="{{ asset('assets/user/images/asing.png') }}" alt="Asing" class="w-52">
-                                <div class="absolute top-3 right-4 text-blue font-bold text-sm">Rp {{ number_format((Carbon\Carbon::now()->isWeekend()) ? $wisata->foreign_weekend_price : $wisata->foreign_price) }}</div>
+                                <div class="absolute top-3 right-4 text-blue font-bold text-sm" x-text="(isWeekend() ? 'Rp' + new Intl.NumberFormat('en-ID').format(weekendForeignPrice) : 'Rp' + new Intl.NumberFormat('en-ID').format(weekdayForeignPrice))"></div>
                             </div>
                         </div>
                     </div>
@@ -108,7 +108,7 @@
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Pilih Tanggal</label>
                             <!-- Datepicker -->
-                            <div x-data="app()" x-init="[initDate(), getNoOfDays()]" x-cloak>
+                            <div x-cloak>
                                 <div class="container mx-auto cursor-pointer">
                                     <div class="w-64">
                                         <div class="relative">
@@ -192,7 +192,7 @@
                         </div>
                         <div class="py-5 flex justify-between items-center">
                             <div class="text-gray text-xl font-bold">TOTAL HARGA</div>
-                            <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * price)"></span></strong>
+                            <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * (isWeekend() ? weekendPrice : weekdayPrice))"></span></strong>
                         </div>
                         <input type="hidden" name="wisata_id" value="{{ $wisata->id }}">
                         <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
@@ -245,6 +245,13 @@
                 year: "",
                 no_of_days: [],
                 blankdays: [],
+                weekendPrice: {{ $wisata->local_weekend_price }},
+                weekdayPrice: {{ $wisata->local_price }},
+                weekendForeignPrice: {{ $wisata->foreign_weekend_price }},
+                weekdayForeignPrice: {{ $wisata->foreign_price }},
+                isWeekend() {
+                    return (new Date(this.datepickerValue).getDay() === 6 || new Date(this.datepickerValue).getDay() === 0);
+                },
                 initDate() {
                     let today;
                     if (this.selectedDate) {

@@ -18,9 +18,10 @@
                         </div>
                     </div>
                 </div>
-                <div>
-                    <i class='bx bx-search text-xl' ></i>
-                </div>
+                <form action="" method="GET" class="flex gap-2 items-center" x-data="{ open: {{ $search == null ? 'false' : 'true' }}, click: 0, search: '{{ $search }}' }">
+                    <input type="text" name="search" placeholder="Cari ..." class="border-b px-2 py-1 outline-none focus:border-b-2" x-show="open" x-model="search">
+                    <button @click="open = true; click += 1" x-bind:type="click == 2 ? 'submit' : 'button'" ><i class='bx bx-search text-xl' ></i></button>
+                </form>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 @foreach($wisataList as $wisata)
@@ -51,4 +52,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('footExtention')
+    <script src="//unpkg.com/alpinejs" defer></script>
 @endsection

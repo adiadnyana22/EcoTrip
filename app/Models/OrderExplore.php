@@ -10,6 +10,7 @@ class OrderExplore extends Model
     use HasFactory;
 
     protected $fillable = [
+        'kode_tiket',
         'explore_id',
         'user_id',
         'qty',

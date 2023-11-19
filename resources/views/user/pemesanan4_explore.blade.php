@@ -61,6 +61,7 @@
                 </div>
                 <span class="text-gray ml-1 font-medium text-lg block mb-2 mt-8">INFORMASI TIKET</span>
                 <div class="bg-white rounded-lg shadow mb-5 px-6 py-4">
+                    <p class="text-sm text-gray pb-2">{{ $kode_tiket }}</p>
                     <h2 class="font-medium text-xl mb-6">{{ $explore->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>

@@ -69,6 +69,7 @@ class PemesananExploreController extends Controller
 
         $pemesan = array();
         $total_price = 0;
+        $date = Session::get('date');
 
         for ($i = 0; $i < $request->qty; $i++){
             $pemesan[$i] = [
@@ -79,7 +80,7 @@ class PemesananExploreController extends Controller
                 'nationality' =>  $request['nationality'.($i+1)],
             ];
 
-            $total_price += ($request['nationality'.($i+1)] == 0) ? (Carbon::now()->isWeekend() ? $explore->local_weekend_price : $explore->local_price) : (Carbon::now()->isWeekend() ? $explore->foreign_weekend_price : $explore->foreign_price);
+            $total_price += ($request['nationality'.($i+1)] == 0) ? (Carbon::parse($date)->isWeekend() ? $explore->local_weekend_price : $explore->local_price) : (Carbon::parse($date)->isWeekend() ? $explore->foreign_weekend_price : $explore->foreign_price);
         }
 
         Session::put('pemesan', $pemesan);
@@ -166,6 +167,7 @@ class PemesananExploreController extends Controller
             'sk' => 'required|in:Yes',
         ]);
 
+        $kode_tiket = 'ECTRP-'.rand(1000000000, 9999999999).str_pad(Session::get('explore')->id, 3, STR_PAD_LEFT);
         $voucher = Voucher::where('id', '=', $request->voucher)->first();
         $voucherDisc = ($voucher) ? min($voucher->percentage/100 * Session::get('total_price'), $voucher->max_nominal) : 0;
         $kode_unik = "".rand(0, 9).rand(0, 9).rand(0, 9);
@@ -181,6 +183,7 @@ class PemesananExploreController extends Controller
 
         // Add to table Pesanan
         $pesanan = new OrderExplore();
+        $pesanan->kode_tiket = $kode_tiket;
         $pesanan->explore_id = $explore_id;
         $pesanan->user_id = Auth::user()->id;
         $pesanan->meeting_point_id = $meeting_point_id;
@@ -225,6 +228,7 @@ class PemesananExploreController extends Controller
         }
 
         // Put to Session
+        Session::put('kode_tiket', $kode_tiket);
         Session::put('coin', ($request->useCoin) ? $request->coin : 0);
         Session::put('voucher', ($voucher) ? $voucherDisc : 0);
         Session::put('kode_unik', $kode_unik);
@@ -244,6 +248,7 @@ class PemesananExploreController extends Controller
         $voucher = Session::get('voucher');
         $kode_unik = Session::get('kode_unik');
         $grand_total = Session::get('grand_total');
+        $kode_tiket = Session::get('kode_tiket');
 
         Session::forget('transaction');
 
@@ -255,7 +260,8 @@ class PemesananExploreController extends Controller
             ->with('coin', $coin)
             ->with('voucher', $voucher)
             ->with('kode_unik', $kode_unik)
-            ->with('grand_total', $grand_total);
+            ->with('grand_total', $grand_total)
+            ->with('kode_tiket', $kode_tiket);
     }
 
     public function viewPesananSuccess() {
@@ -268,6 +274,7 @@ class PemesananExploreController extends Controller
         Session::forget('grand_total');
         Session::forget('pemesan');
         Session::forget('meeting_point');
+        Session::forget('kode_tiket');
 
         return view('user.success');
     }

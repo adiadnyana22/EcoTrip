@@ -19,13 +19,15 @@
                     </div>  
                     
                     <div class="flex justify-center items-center gap-4">
-                        <a href="#" class="rounded-full py-2 px-4 bg-blue text-white">Open Trip</a>
-                        <a href="#" class="rounded-full py-2 px-4 text-gray border border-gray">Private Trip</a>
+                        <a href="{{ route('exploreList', ['type' => 'open']) }}" class="rounded-full py-2 px-4 {{ $type == 'open' ? 'bg-blue text-white' : 'text-gray border border-gray' }}">Open Trip</a>
+                        <a href="{{ route('exploreList', ['type' => 'private']) }}" class="rounded-full py-2 px-4 {{ $type == 'private' ? 'bg-blue text-white' : 'text-gray border border-gray' }}">Private Trip</a>
                     </div>
                 </div>
-                <div>
-                    <i class='bx bx-search text-xl' ></i>
-                </div>
+                <form action="" method="GET" class="flex gap-2 items-center" x-data="{ open: {{ $search == null ? 'false' : 'true' }}, click: 0, search: '{{ $search }}' }">
+                    <input type="text" name="search" placeholder="Cari ..." class="border-b px-2 py-1 outline-none focus:border-b-2" x-show="open" x-model="search">
+                    <input type="hidden" name="type" value="{{ $type }}">
+                    <button @click="open = true; click += 1" x-bind:type="click == 2 ? 'submit' : 'button'" ><i class='bx bx-search text-xl' ></i></button>
+                </form>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 @foreach($exploreList as $explore)
@@ -34,7 +36,7 @@
                     <div class="py-3">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">Open Trip</div>
+                                <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">{{ $explore->type == 1 ? 'Open Trip' : 'Private Trip' }}</div>
                                 <div><i class='bx bxs-star text-star' ></i> 4.5</div>
                             </div>
                             <div class="text-gray">{{ $explore->location }}</div>
@@ -57,4 +59,8 @@
             </div>
         </div>
     </section>
+@endsection
+
+@section('footExtention')
+    <script src="//unpkg.com/alpinejs" defer></script>
 @endsection

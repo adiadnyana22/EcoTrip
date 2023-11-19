@@ -8,11 +8,19 @@ use Illuminate\Http\Request;
 
 class WisataController extends Controller
 {
-    public function wisataList() {
-        $wisataList = Wisata::all();
+    public function wisataList(Request $request) {
+        $search = $request->query('search');
+
+        if($search != null) {
+            $wisataList = Wisata::where('name', 'like', '%'.$search.'%')->get();
+        } else {
+            $wisataList = Wisata::all();
+            $search = '';
+        }
 
         return view('user.wisata')
-            ->with('wisataList', $wisataList);
+            ->with('wisataList', $wisataList)
+            ->with('search', $search);
     }
 
     public function wisataDetail(Wisata $wisata) {
