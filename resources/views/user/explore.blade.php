@@ -37,7 +37,7 @@
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
                                 <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">{{ $explore->type == 1 ? 'Open Trip' : 'Private Trip' }}</div>
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
+                                <div><i class='bx bxs-star text-star' ></i> {{ $explore->order == 0 ? '-' : $explore->rating }}</div>
                             </div>
                             <div class="text-gray">{{ $explore->location }}</div>
                         </div>
@@ -62,5 +62,5 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
 @endsection

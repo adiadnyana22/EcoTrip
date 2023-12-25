@@ -90,7 +90,7 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
     <script>
         function timer(expiry) {
             return {

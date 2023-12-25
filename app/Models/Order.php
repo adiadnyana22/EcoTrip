@@ -14,9 +14,12 @@ class Order extends Model
         'wisata_id',
         'user_id',
         'qty',
+        'qty_indonesia',
+        'qty_foreign',
         'date',
         'total_ticket_price',
         'voucher_id',
+        'voucher_nominal',
         'coin',
         'unique_code',
         'grand_total_price',
@@ -26,5 +29,9 @@ class Order extends Model
 
     public function wisata() {
         return $this->belongsTo(Wisata::class, 'wisata_id', 'id');
+    }
+
+    public function customer() {
+        return $this->hasMany(OrderCustomerDetail::class, 'order_id', 'id');
     }
 }

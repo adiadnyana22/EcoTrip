@@ -20,9 +20,12 @@ return new class extends Migration
             $table->foreignId('user_id');
             $table->foreignId('meeting_point_id');
             $table->integer('qty');
+            $table->integer('qty_indonesia');
+            $table->integer('qty_foreign');
             $table->date('date');
             $table->integer('total_ticket_price');
             $table->foreignId('voucher_id');
+            $table->integer('voucher_nominal');
             $table->integer('coin');
             $table->integer('unique_code');
             $table->integer('grand_total_price');

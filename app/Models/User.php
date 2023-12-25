@@ -18,8 +18,8 @@ class User extends Authenticatable
         'password',
         'gender',
         'telp',
-        'nik',
         'nationality',
+        'dob',
         'coin',
         'role_id',
     ];
@@ -35,5 +35,9 @@ class User extends Authenticatable
                 ->from('voucher_uses')
                 ->where('user_id', $this->id);
         })->get();
+    }
+
+    public function review() {
+        return $this->hasMany(Waste::class, 'user_id', 'id');
     }
 }

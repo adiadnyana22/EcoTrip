@@ -6,18 +6,11 @@
     <section class="mt-12 mb-6">
         <div class="container mx-auto">
             <div class="main-carousel" data-flickity='{ "cellAlign": "left", "contain": true, "prevNextButtons": false }'>
-                <a href="/campaign" class="carousel-cell w-full">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
+                @foreach ($carouselList as $carousel)
+                <a href="{{ $carousel->link }}" class="carousel-cell w-full">
+                    <img src="{{ asset('assets/user/images/carousel/'. $carousel->picture) }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
                 </a>
-                <a href="#" class="carousel-cell w-full">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
-                </a>
-                <a href="#" class="carousel-cell w-full">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
-                </a>
-                <a href="#" class="carousel-cell w-full">
-                    <img src="{{ asset('assets/user/images/homeBanner.png') }}" alt="Banner" class="w-full rounded-xl h-80 object-cover">
-                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -104,7 +97,7 @@
                     </div>
                     <div class="text-lg text-white">EcoHotel</div>
                 </a>
-                <a href="{{ route('wisataList') }}" class="flex justify-center items-center flex-col gap-3">
+                <a href="{{ route('insightList') }}" class="flex justify-center items-center flex-col gap-3">
                     <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
                         <img src="{{ asset('assets/user/images/homeEcoInsightIcon.svg') }}" alt="Eco Insight" class="w-10">
                     </div>
@@ -296,5 +289,5 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
 @endsection

@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -22,8 +23,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('admin'),
             'gender' => 'M',
             'telp' => '081246868369',
-            'nik' => '1234567890',
-            'nationality' => 'Foreign',
+            'nationality' => 1,
+            'dob' => new Carbon('2002-11-24'),
             'coin' => '999999999',
             'role_id' => 1
         ]);
@@ -34,8 +35,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('visitor'),
             'gender' => 'F',
             'telp' => '08123456789',
-            'nik' => '0987654321',
-            'nationality' => 'Indonesia',
+            'nationality' => 0,
+            'dob' => new Carbon('2001-11-24'),
             'coin' => '10000',
             'role_id' => 2
         ]);

@@ -213,7 +213,7 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
     <script src="https://unpkg.com/create-file-list"></script>
     <script>
     function dataFileDnD() {

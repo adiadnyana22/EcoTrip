@@ -22,7 +22,9 @@ class DatabaseSeeder extends Seeder
             ExploreSeeder::class,
             ExplorePictureSeeder::class,
             VoucherSeeder::class,
-            MeetingPointSeeder::class
+            MeetingPointSeeder::class,
+            InsightSeeder::class,
+            CarouselSeeder::class
         ]);
     }
 }

@@ -14,9 +14,12 @@ class OrderExplore extends Model
         'explore_id',
         'user_id',
         'qty',
+        'qty_indonesia',
+        'qty_foreign',
         'date',
         'total_ticket_price',
         'voucher_id',
+        'voucher_nominal',
         'coin',
         'unique_code',
         'grand_total_price',
@@ -26,5 +29,9 @@ class OrderExplore extends Model
 
     public function explore() {
         return $this->belongsTo(Explore::class, 'explore_id', 'id');
+    }
+
+    public function customer() {
+        return $this->hasMany(OrderExploreCustomerDetail::class, 'order_id', 'id');
     }
 }

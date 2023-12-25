@@ -17,4 +17,8 @@ class OrderExploreCustomerDetail extends Model
         'nationality',
         'order_id',
     ];
+
+    public function order() {
+        return $this->belongsTo(OrderExplore::class, 'order_id', 'id');
+    }
 }

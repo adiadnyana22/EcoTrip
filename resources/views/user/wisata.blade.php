@@ -30,7 +30,7 @@
                     <div class="py-3">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
-                                <div><i class='bx bxs-star text-star' ></i> 4.5</div>
+                                <div><i class='bx bxs-star text-star' ></i> {{ $wisata->order == 0 ? '-' : $wisata->rating }}</div>
                             </div>
                             <div class="text-gray">{{ $wisata->location }}</div>
                         </div>
@@ -55,5 +55,5 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
 @endsection

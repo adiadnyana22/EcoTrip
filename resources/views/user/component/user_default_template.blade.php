@@ -44,5 +44,7 @@
     </script>
     <!-- Flickity -->
     <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+    <!-- Alpine -->
+    <script src="//unpkg.com/alpinejs" defer></script>
 </body>
 </html>

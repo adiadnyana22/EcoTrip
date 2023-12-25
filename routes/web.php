@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.index');
-})->name('home');
+Route::get('/', [\App\Http\Controllers\MenuController::class, 'homepage'])->name('home');
 
 Route::get('/wisata', [\App\Http\Controllers\WisataController::class, 'wisataList'])->name('wisataList');
 
@@ -30,6 +28,7 @@ Route::post('/login', [\App\Http\Controllers\AuthController::class, 'loginMtd'])
 Route::get('/logout', [\App\Http\Controllers\AuthController::class, 'logoutMtd'])->name('logout');
 
 Route::get('/register', [\App\Http\Controllers\AuthController::class, 'registerPage'])->name('register');
+Route::post('/register', [\App\Http\Controllers\AuthController::class, 'registerMtd'])->name('registerMtd');
 
 Route::post('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'mtdPemesananFromDetail'])->name('pemesananWisata1');
 Route::get('/wisata/pemesanan/1', [\App\Http\Controllers\PemesananWisataController::class, 'viewPemesananDataDiri'])->name('viewPemesananWisata1');
@@ -60,10 +59,25 @@ Route::post('/waste/3', [\App\Http\Controllers\WasteController::class, 'mtdRevie
 
 Route::get('/waste/success', [\App\Http\Controllers\WasteController::class, 'viewSuccess'])->name('wasteSuccess');
 
-Route::get('/campaign', function () {
-    return view('user.campaign');
-});
+Route::get('/campaign', [\App\Http\Controllers\MenuController::class, 'campaign'])->name('campaign');
 
-Route::get('/faq', function () {
-    return view('user.faq');
-});
+Route::get('/faq', [\App\Http\Controllers\MenuController::class, 'faq'])->name('faq');
+
+Route::get('/history', [\App\Http\Controllers\MenuController::class, 'orderList'])->name('history');
+
+Route::get('/profile', [\App\Http\Controllers\MenuController::class, 'profile'])->name('profile');
+Route::post('/profile/submit', [\App\Http\Controllers\MenuController::class, 'submitProfile'])->name('submitProfile');
+
+Route::get('/notification', [\App\Http\Controllers\MenuController::class, 'notification'])->name('notification');
+
+Route::get('/wishlist', [\App\Http\Controllers\MenuController::class, 'wishlist'])->name('wishlist');
+
+Route::get('/toggleWisataWishlist', [\App\Http\Controllers\WisataController::class, 'wishlistToggle'])->name('toggleWisataWishlist');
+Route::get('/toggleExploreWishlist', [\App\Http\Controllers\ExploreController::class, 'wishlistToggle'])->name('toggleExploreWishlist');
+
+Route::get('/insight', [\App\Http\Controllers\InsightController::class, 'insightList'])->name('insightList');
+Route::get('/insight/{insight}', [\App\Http\Controllers\InsightController::class, 'insightDetail'])->name('insightDetail');
+
+Route::get('/voucher', [\App\Http\Controllers\MenuController::class, 'voucher'])->name('voucher');
+
+Route::get('/coin', [\App\Http\Controllers\MenuController::class, 'coin'])->name('coin');

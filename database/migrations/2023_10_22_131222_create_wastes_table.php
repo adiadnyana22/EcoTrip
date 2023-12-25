@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('order_type'); // W for Wisata or E for Explore
             $table->foreignId('order_id');
             $table->foreignId('user_id');
+            $table->integer('product_id');
             $table->integer('star');
             $table->string('review', 500);
             $table->timestamps();

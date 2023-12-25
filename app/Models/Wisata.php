@@ -20,9 +20,15 @@ class Wisata extends Model
         'description',
         'activity',
         'includes',
+        'rating',
+        'order'
     ];
 
     public function order() {
         return $this->hasMany(Order::class, 'wisata_id', 'id');
+    }
+
+    public function wishlist() {
+        return $this->hasMany(Wishlist::class, 'wisata_id', 'id');
     }
 }

@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('activity', 2000);
             $table->string('includes', 2000);
             $table->string('itinerary', 2000);
+            $table->float('rating');
+            $table->integer('order');
             $table->timestamps();
         });
     }

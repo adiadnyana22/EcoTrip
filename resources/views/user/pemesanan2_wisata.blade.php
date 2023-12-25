@@ -139,6 +139,7 @@
                         </div>
                     </div>
                     <input type="hidden" name="total_pay" x-model="totalPay">
+                    <input type="hidden" name="voucher_nominal" x-model="voucherList.find((vc) => vc.id == voucher).actual_disc">
                     <button x-bind:class="'rounded px-4 py-2 text-center text-white block w-full mt-4 mb-2 ' + ((isTaCChecked) ? 'bg-primary' : 'bg-gray')" x-bind:disabled="!isTaCChecked">Bayar</button>
                 </div>
                 <div class="flex items-center gap-3 ml-1">
@@ -269,5 +270,5 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
 @endsection

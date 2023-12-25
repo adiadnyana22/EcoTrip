@@ -47,7 +47,9 @@
                     <div x-show="open" class="px-6 py-4">
                         <div class="mb-6">
                             <label for="" class="font-medium"><span class="text-red-400">*</span>E-mail</label>
+                            @if ($i == 1)
                             <div class="text-sm text-gray">*tiket akan dikirimkan melalui alamat email</div>
+                            @endif
                             <input type="email" name="email{{ $i }}" placeholder="email" class="rounded border border-gray/25 px-6 py-3 block w-full mt-1">
                         </div>
                         <div class="mb-6">
@@ -89,5 +91,5 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
 @endsection

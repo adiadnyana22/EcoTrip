@@ -27,7 +27,9 @@ class ExploreSeeder extends Seeder
             'description' => 'lorem',
             'activity' => 'lorem, lorem, lorem, lorem',
             'includes' => 'lorem, lorem, lorem, lorem',
-            'itinerary' => 'lorem, lorem, lorem, lorem'
+            'itinerary' => 'lorem, lorem, lorem, lorem',
+            'rating' => 0,
+            'order' => 0
         ]);
 
         Explore::create([
@@ -42,7 +44,9 @@ class ExploreSeeder extends Seeder
             'description' => 'lorem1',
             'activity' => 'lorem1, lorem1, lorem1, lorem1',
             'includes' => 'lorem1, lorem1, lorem1, lorem1',
-            'itinerary' => 'lorem1, lorem1, lorem1, lorem1'
+            'itinerary' => 'lorem1, lorem1, lorem1, lorem1',
+            'rating' => 0,
+            'order' => 0
         ]);
 
         Explore::create([
@@ -57,7 +61,9 @@ class ExploreSeeder extends Seeder
             'description' => 'lorem',
             'activity' => 'lorem, lorem, lorem, lorem',
             'includes' => 'lorem, lorem, lorem, lorem',
-            'itinerary' => 'lorem, lorem, lorem, lorem'
+            'itinerary' => 'lorem, lorem, lorem, lorem',
+            'rating' => 0,
+            'order' => 0
         ]);
 
         Explore::create([
@@ -72,7 +78,9 @@ class ExploreSeeder extends Seeder
             'description' => 'lorem1',
             'activity' => 'lorem1, lorem1, lorem1, lorem1',
             'includes' => 'lorem1, lorem1, lorem1, lorem1',
-            'itinerary' => 'lorem1, lorem1, lorem1, lorem1'
+            'itinerary' => 'lorem1, lorem1, lorem1, lorem1',
+            'rating' => 0,
+            'order' => 0
         ]);
     }
 }

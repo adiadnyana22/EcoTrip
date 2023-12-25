@@ -20,10 +20,16 @@ class Explore extends Model
         'description',
         'activity',
         'includes',
-        'itinerary'
+        'itinerary',
+        'rating',
+        'order'
     ];
 
     public function order() {
         return $this->hasMany(OrderExplore::class, 'explore_id', 'id');
+    }
+
+    public function wishlist() {
+        return $this->hasMany(WishlistExplore::class, 'explore_id', 'id');
     }
 }

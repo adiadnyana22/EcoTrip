@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('order_explore_customer_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('order_explore_id');
+            $table->foreignId('order_id');
             $table->string('name');
             $table->string('email');
             $table->string('gender');

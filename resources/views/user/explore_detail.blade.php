@@ -55,7 +55,10 @@
             <div class="flex gap-12" x-data="app()" x-init="[initDate(), getNoOfDays()]">
                 <div class="basis-3/5">
                     <div class="pb-6">
-                        <h1 class="text-4xl font-bold mt-6 mb-8">{{ $explore->name }}</h1>
+                        <div class="flex items-center justify-between">
+                            <h1 class="text-4xl font-bold mt-6 mb-8">{{ $explore->name }}</h1>
+                            <a href="{{ route('toggleExploreWishlist', ['explore_id' => $explore->id]) }}" class="flex items-center gap-2 text-lg">@if($isWishlist) <i class='bx bxs-heart text-red-500 text-2xl'></i> - wishlist @else <i class='bx bx-heart text-gray text-2xl' ></i> + wishlist @endif</a>
+                        </div>
                         <div class="flex items-center gap-8">
                             <p class="text-gray font-bold">HARGA TIKET</p>
                             <div class="relative">
@@ -93,6 +96,26 @@
                                 <ul class="my-5 flex flex-col gap-3">
                                     @foreach(explode(',', $explore->includes) as $includes)
                                         <li class="rounded border-l-4 border-l-primary border-r border-r-gray border-t border-t-gray/25 border-b border-b-gray px-6 py-3"> {{ trim($includes) }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            <div class="pt-6 pb-2">
+                                <h2 class="mb-3 font-bold text-gray">PENILAIAN PENGUNJUNG</h2>
+                                <div class="text-xl">
+                                    <i class='bx bxs-star text-star' ></i>
+                                    {{ $explore->rating }} <span class="text-gray">({{ $explore->order }} reviews)</span>
+                                </div>
+                                <ul class="my-5 flex flex-col gap-3">
+                                    @foreach ($review as $r)
+                                        @if($r->review != null && $r->review != '') 
+                                            <div class="px-8 py-4 border border-gray/25 rounded-lg">
+                                                <div class="flex justify-between">
+                                                    <div class="font-bold mb-2">{{ $r->user->name }}</div>
+                                                    <div><i class='bx bxs-star text-star' ></i> {{ $r->star }}</div>
+                                                </div>
+                                                <div>{{ $r->review }}</div>
+                                            </div>
+                                        @endif
                                     @endforeach
                                 </ul>
                             </div>
@@ -219,7 +242,7 @@
 @endsection
 
 @section('footExtention')
-    <script src="//unpkg.com/alpinejs" defer></script>
+    
     <script>
         let btnDeskripsi = document.querySelector("#btnDeskripsi");
         let btnItinerary = document.querySelector("#btnItinerary");

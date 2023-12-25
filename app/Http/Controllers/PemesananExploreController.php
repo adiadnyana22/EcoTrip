@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\MailClass;
+use App\Models\CoinUse;
 use App\Models\Explore;
 use App\Models\MeetingPoint;
+use App\Models\Notification;
 use App\Models\OrderExplore;
 use App\Models\OrderExploreCustomerDetail;
 use App\Models\User;
@@ -12,6 +15,7 @@ use App\Models\VoucherUse;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class PemesananExploreController extends Controller
@@ -176,10 +180,28 @@ class PemesananExploreController extends Controller
         $explore_id = Session::get('explore')->id;
         $meeting_point_id = Session::get('meeting_point')->id;
         $qty = Session::get('qty');
-        $date = date('d-m-y', strtotime(Session::get('date')));
+        $date = date('Y-m-d', strtotime(Session::get('date')));
         $total_price = Session::get('total_price');
         $voucher_id = ($request->voucher) ? $request->voucher : 0;
+        $voucher_nominal = ($request->voucher) ? $request->voucher_nominal : 0;
         $coin = ($request->useCoin) ? $request->coin : 0;
+
+        if($coin != 0) {
+            $useCoin = new CoinUse();
+            $useCoin->nominal = $coin;
+            $useCoin->type = 0;
+            $useCoin->date = Carbon::today();
+            $useCoin->description = 'Transaksi pemesanan explore';
+            $useCoin->user_id = Auth::user()->id;
+            $useCoin->save();
+
+            $notification = new Notification();
+            $notification->title = 'Koin kamu telah berhasil digunakan';
+            $notification->type = 2;
+            $notification->date = Carbon::now();
+            $notification->user_id = Auth::user()->id;
+            $notification->save();
+        }
 
         // Add to table Pesanan
         $pesanan = new OrderExplore();
@@ -191,25 +213,38 @@ class PemesananExploreController extends Controller
         $pesanan->date = $date;
         $pesanan->total_ticket_price = $total_price;
         $pesanan->voucher_id = $voucher_id;
+        $pesanan->voucher_nominal = $voucher_nominal;
         $pesanan->coin = $coin;
         $pesanan->unique_code = $kode_unik;
         $pesanan->grand_total_price = $grand_total;
         $pesanan->status_code = 1;
         $pesanan->waste_flag = 0;
+        $pesanan->qty_indonesia = 0;
+        $pesanan->qty_foreign = 0;
         $pesanan->save();
 
+        $pemesanIndo = 0;
+        $pemesanForeign = 0;
+
         // Add to table DataDiriPesanan
-        $pemesan = Session::get('pemesan');
-        foreach ($pemesan as $ps) {
+        $pemesanAll = Session::get('pemesan');
+        foreach ($pemesanAll as $ps) {
             $pemesan = new OrderExploreCustomerDetail();
             $pemesan->name = $ps['name'];
             $pemesan->email = $ps['email'];
             $pemesan->gender = $ps['gender'];
             $pemesan->telp = $ps['telp'];
             $pemesan->nationality = $ps['nationality'];
-            $pemesan->order_explore_id = $pesanan->id;
+            $pemesan->order_id = $pesanan->id;
             $pemesan->save();
+
+            if($pemesan->nationality == 0) $pemesanIndo += 1;
+            if($pemesan->nationality == 1) $pemesanForeign += 1;
         }
+
+        $pesanan->qty_indonesia = $pemesanIndo;
+        $pesanan->qty_foreign = $pemesanForeign;
+        $pesanan->save();
 
         // Kurangi koin & voucher
         if($coin != 0) {
@@ -226,6 +261,8 @@ class PemesananExploreController extends Controller
             $voucherUse->use_date = $date;
             $voucherUse->save();
         }
+
+        Mail::to($pemesanAll[0]['email'])->send(new MailClass(Session::get('explore')->name, $kode_tiket, $date, $qty, $grand_total, Carbon::now()));
 
         // Put to Session
         Session::put('kode_tiket', $kode_tiket);

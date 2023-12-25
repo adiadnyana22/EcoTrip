@@ -25,7 +25,9 @@ class WisataSeeder extends Seeder
             'location' => 'Malang, Jawa Timur',
             'description' => 'lorem',
             'activity' => 'lorem, lorem, lorem, lorem',
-            'includes' => 'lorem, lorem, lorem, lorem'
+            'includes' => 'lorem, lorem, lorem, lorem',
+            'rating' => 0,
+            'order' => 0
         ]);
 
         Wisata::create([
@@ -38,7 +40,9 @@ class WisataSeeder extends Seeder
             'location' => 'Malang, Jawa Timur',
             'description' => 'lorem1',
             'activity' => 'lorem1, lorem1, lorem1, lorem1',
-            'includes' => 'lorem1, lorem1, lorem1, lorem1'
+            'includes' => 'lorem1, lorem1, lorem1, lorem1',
+            'rating' => 0,
+            'order' => 0
         ]);
     }
 }
