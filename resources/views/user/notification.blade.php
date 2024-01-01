@@ -23,7 +23,7 @@
                                 <i class='bx bx-bell text-primary bg-primary/5 px-4 py-3 rounded-full text-2xl'></i>
                                 <div>
                                     <p>{{ $notif->title }}</p>
-                                    <span class="text-sm text-gray">{{ $notif->date }}</span>
+                                    <span class="text-sm text-gray">{{ date("d/m/Y H:i:s", strtotime($notif->date)) }}</span>
                                 </div>
                             </div>
                         </a>

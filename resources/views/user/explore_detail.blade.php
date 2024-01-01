@@ -57,7 +57,7 @@
                     <div class="pb-6">
                         <div class="flex items-center justify-between">
                             <h1 class="text-4xl font-bold mt-6 mb-8">{{ $explore->name }}</h1>
-                            <a href="{{ route('toggleExploreWishlist', ['explore_id' => $explore->id]) }}" class="flex items-center gap-2 text-lg">@if($isWishlist) <i class='bx bxs-heart text-red-500 text-2xl'></i> - wishlist @else <i class='bx bx-heart text-gray text-2xl' ></i> + wishlist @endif</a>
+                            @if(Auth::check())<a href="{{ route('toggleExploreWishlist', ['explore_id' => $explore->id]) }}" class="flex items-center gap-2 text-lg">@if($isWishlist) <i class='bx bxs-heart text-red-500 text-2xl'></i> - wishlist @else <i class='bx bx-heart text-gray text-2xl' ></i> + wishlist @endif</a>@endif
                         </div>
                         <div class="flex items-center gap-8">
                             <p class="text-gray font-bold">HARGA TIKET</p>

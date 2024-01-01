@@ -110,7 +110,7 @@
                                         </li>
                                     </ul>
                                     <div class="pt-8">
-                                        @if($order->status_code == 2 || ($order->status_code == 1 && Carbon\Carbon::parse($order->date)->gte(Carbon\Carbon::today())))
+                                        @if($order->status_code == 2 && $order->waste_flag == 0)
                                             <a href="{{ route('viewWaste1') }}" class="block px-4 py-3 rounded-lg bg-primary text-white text-center">Go to EcoWaste</a>
                                         @endif
                                     </div>
@@ -219,7 +219,7 @@
                                         </li>
                                     </ul>
                                     <div class="pt-8">
-                                        @if($order->status_code == 2 || ($order->status_code == 1 && Carbon\Carbon::parse($order->date)->gte(Carbon\Carbon::today())))
+                                        @if($order->status_code == 2 && $order->waste_flag == 0)
                                             <a href="{{ route('viewWaste1') }}" class="block px-4 py-3 rounded-lg bg-primary text-white text-center">Go to EcoWaste</a>
                                         @endif
                                     </div>

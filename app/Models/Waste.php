@@ -14,6 +14,7 @@ class Waste extends Model
         'order_id',
         'user_id',
         'product_id',
+        'status_code',
         'star',
         'review',
     ];

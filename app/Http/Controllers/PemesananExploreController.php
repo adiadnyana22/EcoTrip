@@ -23,7 +23,7 @@ class PemesananExploreController extends Controller
     public function mtdPemesananFromDetail(Request $request) {
         $validateReq = $request->validate([
             'explore_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 
@@ -55,7 +55,7 @@ class PemesananExploreController extends Controller
 
         $validateReq = $request->validate([
             'explore_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 
@@ -116,7 +116,7 @@ class PemesananExploreController extends Controller
     public function mtdPemesananMeetingPoint(Request $request) {
         $validateReq = $request->validate([
             'explore_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
             'meeting_point_id' => 'required|numeric'
         ]);
@@ -159,7 +159,7 @@ class PemesananExploreController extends Controller
 
         $validateReq = $request->validate([
             'explore_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 

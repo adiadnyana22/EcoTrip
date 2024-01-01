@@ -14,4 +14,8 @@ class MeetingPoint extends Model
         'description',
         'mapIframe'
     ];
+
+    public function order() {
+        return $this->hasMany(OrderExplore::class, 'meeting_point_id', 'id');
+    }
 }

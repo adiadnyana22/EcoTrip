@@ -42,7 +42,11 @@ class ExploreController extends Controller
         $exploreImgList = ExplorePicture::where('explore_id', $explore->id)->get();
         $review = Waste::with('user')->where([['order_type', '=', 'E'], ['product_id', '=', $explore->id]])->take(3)->get();
 
-        $isWishlist = WishlistExplore::where('user_id', '=', Auth::user()->id)->where('explore_id', '=', $explore->id)->first() ? true : false;
+        if(Auth::check()){
+            $isWishlist = WishlistExplore::where('user_id', '=', Auth::user()->id)->where('explore_id', '=', $explore->id)->first() ? true : false;
+        } else {
+            $isWishlist = false;
+        }
 
         return view('user.explore_detail')
             ->with('explore', $explore)

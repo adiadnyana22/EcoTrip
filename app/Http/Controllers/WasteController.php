@@ -18,12 +18,8 @@ class WasteController extends Controller
     public function viewTicketList() {
         if(!Auth::user()) return redirect('/campaign');
 
-        // $hasWasteBefore = Waste::where('user_id', '=', Auth::user()->id)->count();
-        // if($hasWasteBefore == 0) return redirect('/campaign');
-
-        // Nanti perlu ada tambahan kondisi status code
-        $wisataList = Order::with('wisata')->where([['waste_flag', '=', 0], ['user_id', '=', Auth::user()->id]])->get();
-        $exploreList = OrderExplore::with('explore')->where([['waste_flag', '=', 0], ['user_id', '=', Auth::user()->id]])->get();
+        $wisataList = Order::with('wisata')->where([['waste_flag', '=', 0], ['user_id', '=', Auth::user()->id], ['status_code', '=', 2]])->get();
+        $exploreList = OrderExplore::with('explore')->where([['waste_flag', '=', 0], ['user_id', '=', Auth::user()->id], ['status_code', '=', 2]])->get();
 
         return view('user.waste1')
             ->with('wisataList', $wisataList)
@@ -97,6 +93,7 @@ class WasteController extends Controller
             $order = OrderExplore::where('id', '=', $request->ticketId[1])->first();
             $waste->product_id = $order->explore_id;
         }
+        $waste->status_code = 1;
         $waste->star = $request->star;
         $waste->review = ($request->review == null) ? '' : $request->review;
         $waste->save();

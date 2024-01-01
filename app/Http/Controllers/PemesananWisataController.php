@@ -22,7 +22,7 @@ class PemesananWisataController extends Controller
     public function mtdPemesananFromDetail(Request $request) {
         $validateReq = $request->validate([
             'wisata_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 
@@ -54,7 +54,7 @@ class PemesananWisataController extends Controller
 
         $validateReq = $request->validate([
             'wisata_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 
@@ -121,7 +121,7 @@ class PemesananWisataController extends Controller
 
         $validateReq = $request->validate([
             'wisata_id' => 'required|numeric',
-            'date' => 'required',
+            'date' => 'required|date|after:yesterday',
             'qty' => 'required|numeric',
         ]);
 

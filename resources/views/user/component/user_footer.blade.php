@@ -7,9 +7,9 @@
                 <a href="#" class="hover:underline">Kebijakan Privasi</a>
             </div>
             <ul class="list-none flex gap-5">
-                <li><a href="#" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-whatsapp' ></i></a></li>
+                <li><a href="https://wa.me/+6281246868369" target="_blank" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-whatsapp' ></i></a></li>
                 <li><a href="#" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-facebook' ></i></a></li>
-                <li><a href="#" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-instagram' ></i></a></li>
+                <li><a href="https://www.instagram.com/ecotrip_id/" target="_blank" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-instagram' ></i></a></li>
                 <li><a href="#" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-tiktok' ></i></a></li>
                 <li><a href="#" class="rounded-full text-primary bg-primary/5 flex justify-center items-center w-12 h-12 text-2xl transition hover:bg-transparent"><i class='bx bxl-youtube' ></i></a></li>
             </ul>

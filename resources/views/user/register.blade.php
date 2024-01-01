@@ -7,7 +7,7 @@
         <div class="w-4/6 h-4/6 rounded-lg flex justify-between items-center bg-white relative" style="z-index: 1">
             <div
                 class="basis-7/12 bg-[url('/assets/user/images/login.png')] bg-cover h-full w-full rounded-lg p-12 flex flex-col justify-between text-white">
-                <a href="#" class="flex items-center gap-3"><i class='bx bx-chevron-left'></i> Back</a>
+                <a href="{{ route('login') }}" class="flex items-center gap-3"><i class='bx bx-chevron-left'></i> Back</a>
                 <div>
                     <h1 class="font-bold text-3xl mb-2">Daftar kedalam EcoTrip<br>Gratis. Sekarang.</h2>
                     <p>Ecotourism is The Future of Indonesia’s Travel</p>

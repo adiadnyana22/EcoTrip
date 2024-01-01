@@ -6,7 +6,7 @@
     <section class="h-screen w-screen grid grid-cols-2">
         <div class="shadow-xl max-h-screen max-w-full pl-24 pt-12 pr-16 sticky top-0 left-0">
             <div class="flex items-center gap-8">
-                <i class='bx bx-chevron-left text-4xl'></i>
+                <a href="{{ route('viewPemesananExplore2') }}"><i class='bx bx-chevron-left text-4xl'></i></a>
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
             </div>
             <div class="my-12 shadow px-6 py-4 rounded-xl">
@@ -72,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ useCoin: false, coin: {{ \Illuminate\Support\Facades\Auth::user()->coin }}, useVoucher: false, voucher: '', voucherList: {{ str_replace('"', "'", json_encode($voucher)) }}, totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucherList.find((vc) => vc.id == this.voucher).actual_disc : 0) }  }">
+                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ count: 0, useCoin: false, coin: {{ \Illuminate\Support\Facades\Auth::user()->coin }}, useVoucher: false, voucher: '', voucherList: {{ str_replace('"', "'", json_encode($voucher)) }}, totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucherList.find((vc) => vc.id == this.voucher).actual_disc : 0) }  }">
                     <h2 class="font-medium text-xl mb-6">{{ $explore->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
@@ -159,7 +159,7 @@
                     </div>
                     <input type="hidden" name="total_pay" x-model="totalPay">
                     <input type="hidden" name="voucher_nominal" x-model="voucherList.find((vc) => vc.id == voucher).actual_disc">
-                    <button x-bind:class="'rounded px-4 py-2 text-center text-white block w-full mt-4 mb-2 ' + ((isTaCChecked) ? 'bg-primary' : 'bg-gray')" x-bind:disabled="!isTaCChecked">Bayar</button>
+                    <button x-bind:class="'rounded px-4 py-2 text-center text-white block w-full mt-4 mb-2 ' + ((isTaCChecked) ? 'bg-primary' : 'bg-gray')" x-bind:disabled="!isTaCChecked" @click="count = 1" x-show="count == 0">Bayar</button>
                 </div>
                 <div class="flex items-center gap-3 ml-1">
                     <input type="hidden" name="explore_id" value="{{ $explore->id }}">

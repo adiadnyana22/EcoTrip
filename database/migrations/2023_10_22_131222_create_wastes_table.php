@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('order_id');
             $table->foreignId('user_id');
             $table->integer('product_id');
+            $table->integer('status_code'); // 1 for not confirm yet AND 2 for confirm by admin
             $table->integer('star');
             $table->string('review', 500);
             $table->timestamps();

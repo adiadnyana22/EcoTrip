@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Carousel;
 use App\Models\CoinUse;
+use App\Models\Explore;
+use App\Models\Insight;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Models\OrderExplore;
 use App\Models\User;
+use App\Models\Wisata;
 use App\Models\Wishlist;
 use App\Models\WishlistExplore;
 use Illuminate\Http\Request;
@@ -18,9 +21,13 @@ class MenuController extends Controller
 {
     public function homepage() {
         $carouselList = Carousel::all();
+        $exploreList = Explore::limit(3)->get();
+        $insightList = Insight::limit(3)->get();
 
         return view('user.index')
-            ->with('carouselList', $carouselList);
+            ->with('carouselList', $carouselList)
+            ->with('exploreList', $exploreList)
+            ->with('insightList', $insightList);
     }
 
     public function orderList(Request $request) {
@@ -76,14 +83,14 @@ class MenuController extends Controller
         $type = $request->query('type');
         
         if($type == 'transaksi') {
-            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '0')->get();
+            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '0')->orderBy('date', 'desc')->get();
         } else if($type == 'promo') {
-            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '1')->get();
+            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '1')->orderBy('date', 'desc')->get();
         } else if($type == 'koin') {
-            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '2')->get();
+            $list = Notification::where('user_id', '=', Auth::user()->id)->where('type', '=', '2')->orderBy('date', 'desc')->get();
         } else {
             $type = 'all';
-            $list = Notification::where('user_id', '=', Auth::user()->id)->get();
+            $list = Notification::where('user_id', '=', Auth::user()->id)->orderBy('date', 'desc')->get();
         }
 
         return view('user.notification')
@@ -123,5 +130,23 @@ class MenuController extends Controller
         $user->save();
 
         return redirect()->route('profile');
+    }
+
+    public function search(Request $request) {
+        $search = $request->query('search');
+
+        if($search != null) {
+            $wisataList = Wisata::where('name', 'like', '%'.$search.'%')->get();
+            $exploreList = Explore::where('name', 'like', '%'.$search.'%')->get();
+        } else {
+            $wisataList = Wisata::all();
+            $exploreList = Explore::all();
+            $search = '';
+        }
+
+        return view('user.search')
+            ->with('wisataList', $wisataList)
+            ->with('exploreList', $exploreList)
+            ->with('search', $search);
     }
 }

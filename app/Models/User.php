@@ -40,4 +40,12 @@ class User extends Authenticatable
     public function review() {
         return $this->hasMany(Waste::class, 'user_id', 'id');
     }
+
+    public function orderWisata() {
+        return $this->hasMany(Order::class, 'user_id', 'id');
+    }
+
+    public function orderExplore() {
+        return $this->hasMany(OrderExplore::class, 'user_id', 'id');
+    }
 }

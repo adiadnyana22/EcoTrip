@@ -6,7 +6,7 @@
     <section class="h-screen w-screen grid grid-cols-2">
         <div class="shadow-xl max-h-screen max-w-full pl-24 pt-12 pr-16 sticky top-0 left-0">
             <div class="flex items-center gap-8">
-                <i class='bx bx-chevron-left text-4xl'></i>
+                <a href="{{ route('wisataDetail', $wisata->id) }}"><i class='bx bx-chevron-left text-4xl'></i></a>
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
             </div>
             <div class="my-12 shadow px-6 py-4 rounded-xl">

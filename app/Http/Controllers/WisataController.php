@@ -30,7 +30,11 @@ class WisataController extends Controller
         $wisataImgList = WisataPicture::where('wisata_id', $wisata->id)->get();
         $review = Waste::with('user')->where([['order_type', '=', 'W'], ['product_id', '=', $wisata->id]])->take(3)->get();
 
-        $isWishlist = Wishlist::where('user_id', '=', Auth::user()->id)->where('wisata_id', '=', $wisata->id)->first() ? true : false;
+        if(Auth::check()){
+            $isWishlist = Wishlist::where('user_id', '=', Auth::user()->id)->where('wisata_id', '=', $wisata->id)->first() ? true : false;
+        } else {
+            $isWishlist = false;
+        }
 
         return view('user.wisata_detail')
             ->with('wisata', $wisata)

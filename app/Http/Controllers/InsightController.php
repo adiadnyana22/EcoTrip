@@ -26,4 +26,9 @@ class InsightController extends Controller
         return view('user.insight_detail')
             ->with('insight', $insight);
     }
+
+    public function insightDetailContent(Insight $insight) {
+        return view('user.insight_detail_content')
+            ->with('insight', $insight);
+    }
 }

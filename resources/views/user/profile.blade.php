@@ -25,7 +25,6 @@
                         </div>
                         <div class="mb-6">
                             <label for="" class="block mb-1">E-mail</label>
-                            <p class="text-sm text-gray mb-2">*tiket akan dikirimkan melalui alamat email</p>
                             <input type="email" class="block px-6 py-3 rounded-lg border border-gray/25 w-full"
                                 placeholder="email" name="email" value="{{ \Illuminate\Support\Facades\Auth::user()->email }}">
                         </div>

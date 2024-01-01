@@ -91,12 +91,6 @@
                     </div>
                     <div class="text-lg text-white">EcoExplore</div>
                 </a>
-                <a href="{{ route('wisataList') }}" class="flex justify-center items-center flex-col gap-3">
-                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
-                        <img src="{{ asset('assets/user/images/homeEcoHotelIcon.svg') }}" alt="Eco Hotel" class="w-10">
-                    </div>
-                    <div class="text-lg text-white">EcoHotel</div>
-                </a>
                 <a href="{{ route('insightList') }}" class="flex justify-center items-center flex-col gap-3">
                     <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
                         <img src="{{ asset('assets/user/images/homeEcoInsightIcon.svg') }}" alt="Eco Insight" class="w-10">
@@ -111,9 +105,9 @@
                 </a>
             </div>
             <div class="px-6 py-4">
-                <form action="#" class="flex justify-center items-center mt-6">
+                <form action="{{ route('search') }}" class="flex justify-center items-center mt-6" method="GET">
                     <div class="flex justify-center items-center gap-2 w-[600px] max-w-full rounded-2xl shadow-lg px-6 py-3 bg-white">
-                        <input type="text" placeholder="Cari wisata ..." class="w-full text-lg outline-none pl-2">
+                        <input type="text" name="search" placeholder="Cari wisata ..." class="w-full text-lg outline-none pl-2">
                         <button><i class='bx bx-search font-bold text-lg text-primary transition rounded-xl px-4 py-1 hover:bg-primary hover:text-white'></i></button>
                     </div>
                 </form>
@@ -130,51 +124,25 @@
                         Jelajahi destinasi wisata dengan pilihan open trip atau private trip sekarang!
                     </p>
                 </div>
-                <a href="#" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
+                <a href="{{ route('exploreList') }}" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
-                <a href="#" class="transition hover:shadow-lg rounded-lg group">
-                    <img src="{{ asset('assets/user/images/homeExplore1.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
+                @foreach ($exploreList as $explore)
+                <a href="{{ route('exploreDetail', $explore->id) }}" class="transition hover:shadow-lg rounded-lg group">
+                    <img src="{{ asset('assets/user/images/explore/'.$explore->picture) }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
                     <div class="py-3 transition-all group-hover:px-4">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-primary/5 text-primary text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star' ></i> 4.5</div>
+                                <div class="rounded-full py-1.5 px-3 bg-primary/5 text-primary text-sm">{{ $explore->type == 0 ? 'Private Trip' : 'Open Trip' }}</div>
+                                <div><i class='bx bxs-star' ></i> {{ $explore->rating == 0 ? '-' : $explore->rating }}</div>
                             </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
+                            <div class="text-gray">{{ $explore->location }}</div>
                         </div>
-                        <h3 class="text-xl font-bold mt-3">Coban Rondo</h3>
-                        <p class="mb-2 text-sm">Mulai dari <strong class="text-base">Rp 15.000</strong></p>
+                        <h3 class="text-xl font-bold mt-3">{{ $explore->name }}</h3>
+                        <p class="mb-2 text-sm">Mulai dari <strong class="text-base">Rp {{ number_format($explore->local_price) }}</strong></p>
                     </div>
                 </a>
-                <a href="#" class="transition hover:shadow-lg rounded-lg group">
-                    <img src="{{ asset('assets/user/images/homeExplore2.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3 transition-all group-hover:px-4">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-primary/5 text-primary text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Bromo Tengger Semeru</h3>
-                        <p class="mb-2 text-sm">Mulai dari <strong class="text-base">Rp 15.000</strong></p>
-                    </div>
-                </a>
-                <a href="#" class="transition hover:shadow-lg rounded-lg group">
-                    <img src="{{ asset('assets/user/images/homeExplore3.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3 transition-all group-hover:px-4">
-                        <div class="flex justify-between items-center">
-                            <div class="flex justify-center items-center text-gray gap-4">
-                                <div class="rounded-full py-1.5 px-3 bg-primary/5 text-primary text-sm">Open Trip</div>
-                                <div><i class='bx bxs-star' ></i> 4.5</div>
-                            </div>
-                            <div class="text-gray">Malang, Jawa Timur</div>
-                        </div>
-                        <h3 class="text-xl font-bold mt-3">One Day Trip Batu Malang</h3>
-                        <p class="mb-2 text-sm">Mulai dari <strong class="text-base">Rp 15.000</strong></p>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -188,27 +156,17 @@
                         Ketahui informasi terkini melalui artikel dibawah ini!
                     </p>
                 </div>
-                <a href="#" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
+                <a href="{{ route('insightList') }}" class="hover:underline">Lihat semua <i class='bx bx-right-arrow-alt' ></i></a>
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
-                <a href="#" class="group">
-                    <img src="{{ asset('assets/user/images/homeArtikel1.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
+                @foreach ($insightList as $insight)
+                <a href="{{ route('insightDetail', $insight->id) }}" class="group">
+                    <img src="{{ asset('assets/user/images/insight/'.$insight->picture) }}" alt="Insight" class="w-full h-48 object-cover rounded-lg">
                     <div class="py-3">
-                        <h3 class="text-xl mt-3 group-hover:underline text-ellipsis overflow-hidden" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">Pentingnya Peran Ekowisata Untuk Keberlanjutan Pariwisata di Indonesia</h3>
+                        <h3 class="text-xl mt-3 group-hover:underline text-ellipsis overflow-hidden" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">{{ $insight->title }}</h3>
                     </div>
                 </a>
-                <a href="#" class="group">
-                    <img src="{{ asset('assets/user/images/homeArtikel2.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <h3 class="text-xl mt-3 group-hover:underline text-ellipsis overflow-hidden" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">Eco Hotel sudah ada di Malang loh! 5 rekomendasi Eco Hotel cocok bagi kamu para traveler yang aware terhadap keberlanjutan lingkungan</h3>
-                    </div>
-                </a>
-                <a href="#" class="group">
-                    <img src="{{ asset('assets/user/images/homeArtikel3.png') }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
-                        <h3 class="text-xl mt-3 group-hover:underline text-ellipsis overflow-hidden" style="display: -webkit-box;-webkit-line-clamp: 2;-webkit-box-orient: vertical;">Rekomendasi tempat ekowisata di Malang raya</h3>
-                    </div>
-                </a>
+                @endforeach
             </div>
         </div>
     </section>
@@ -278,7 +236,7 @@
             <div class="px-24 py-16 rounded-lg h-96 flex justify-end items-start flex-col" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
                 <p class="text-white mb-6">Ecotourism is The Future of Indonesia’s Travel</p>
-                <a href="#" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
+                <a href="https://www.instagram.com/ecotrip_id/" target="_blank" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
             </div>
         </div>
     </section>

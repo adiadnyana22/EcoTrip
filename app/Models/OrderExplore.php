@@ -34,4 +34,12 @@ class OrderExplore extends Model
     public function customer() {
         return $this->hasMany(OrderExploreCustomerDetail::class, 'order_id', 'id');
     }
+
+    public function user() {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public function meeting() {
+        return $this->belongsTo(MeetingPoint::class, 'meeting_point_id', 'id');
+    }
 }

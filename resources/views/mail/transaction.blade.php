@@ -23,23 +23,19 @@
             <tr>
                 <td>Tanggal Tiket</td>
                 <td>:</td>
-                <td>{{ $date_tiket }}</td>
+                <td>{{ date("d/m/Y", strtotime($date_tiket)) }}</td>
             </tr>
             <tr>
                 <td>Tanggal Pesanan</td>
                 <td>:</td>
-                <td>{{ $date }}</td>
+                <td>{{ date("d/m/Y H:i:s", strtotime($date)) }}</td>
             </tr>
             <tr>
                 <td>Total Harga</td>
                 <td>:</td>
-                <td>{{ $price }}</td>
+                <td>{{ 'Rp. '.number_format($price) }}</td>
             </tr>
         </table>
-    </div>
-    <div>
-        <p>Silahkan melakukan pembayaran ke nomor rekening di bawah ini :</p>
-        <span>7670533471 (Bank Central Asia) a/n EcoTrip</span>
     </div>
     <div style="margin-top: 2rem;">
         <p>Jika anda sudah melakukan pembayaran, silahkan menunggu konfirmasi dari admin</p>
