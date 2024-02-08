@@ -24,7 +24,9 @@ class DatabaseSeeder extends Seeder
             VoucherSeeder::class,
             MeetingPointSeeder::class,
             InsightSeeder::class,
-            CarouselSeeder::class
+            CarouselSeeder::class,
+            FaqSeeder::class,
+            SysparamSeeder::class
         ]);
     }
 }

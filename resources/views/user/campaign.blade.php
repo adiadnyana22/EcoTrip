@@ -13,7 +13,7 @@
                 <div class="my-6 flex flex-col justify-center items-center text-center">
                     <h1 class="text-primary text-5xl font-bold mb-4">EcoWaste</h1>
                     <p class="lg:w-4/5 mx-auto">
-                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat, blanditiis iste id dolorum asperiores dolore esse, mollitia cumque a tempora consequuntur, enim exercitationem natus quibusdam animi suscipit nisi. Fugiat, et!
+                    Ecowaste adalah fitur yang dapat mendukung wisatawan dalam melakukan pengelolaan sampah secara mandiri saat melakukan ekowisata.
                     </p>
                     <a href="{{ route('viewWaste1') }}" class="bg-primary text-white px-24 py-3 rounded-2xl text-xl mt-4 border-2 border-primary transition hover:bg-transparent hover:text-primary">Masuk ke EcoWaste</a>
                 </div>
@@ -27,7 +27,7 @@
             <div class="px-24 py-16 rounded-lg h-96 flex justify-end items-start flex-col" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
                 <p class="text-white mb-6">Ecotourism is The Future of Indonesia’s Travel</p>
-                <a href="https://www.instagram.com/ecotrip_id/" target="_blank" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
+                <a href="{{ route('about') }}" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
             </div>
         </div>
     </section>

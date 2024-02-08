@@ -100,20 +100,26 @@
             <span>Voucher</span></a>
     </li>
 
-    <!-- Divider -->
-{{--    <hr class="sidebar-divider">--}}
-
-    <!-- Heading -->
-{{--    <div class="sidebar-heading">--}}
-{{--        Admin--}}
-{{--    </div>--}}
+    <!-- Nav Item -->
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('adminAbout') }}">
+            <i class="fas fa-fw fa-address-card"></i>
+            <span>About</span></a>
+    </li>
 
     <!-- Nav Item -->
-{{--    <li class="nav-item">--}}
-{{--        <a class="nav-link" href="#">--}}
-{{--            <i class="fas fa-fw fa-user"></i>--}}
-{{--            <span>User</span></a>--}}
-{{--    </li>--}}
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('adminFAQ') }}">
+            <i class="fas fa-fw fa-question"></i>
+            <span>FAQ</span></a>
+    </li>
+
+     <!-- Nav Item -->
+     <li class="nav-item">
+        <a class="nav-link" href="#" data-toggle="modal" data-target="#cleanModal">
+            <i class="fas fa-fw fa-trash"></i>
+            <span>Clean EcoWase Image</span></a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

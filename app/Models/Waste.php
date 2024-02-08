@@ -22,4 +22,8 @@ class Waste extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function picture() {
+        return $this->hasMany(WasteImage::class, 'waste_id', 'id');
+    }
 }

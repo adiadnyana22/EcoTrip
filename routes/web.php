@@ -27,6 +27,8 @@ Route::get('/campaign', [\App\Http\Controllers\MenuController::class, 'campaign'
 
 Route::get('/faq', [\App\Http\Controllers\MenuController::class, 'faq'])->name('faq');
 
+Route::get('/about', [\App\Http\Controllers\MenuController::class, 'about'])->name('about');
+
 Route::get('/insight', [\App\Http\Controllers\InsightController::class, 'insightList'])->name('insightList');
 Route::get('/insight/{insight}', [\App\Http\Controllers\InsightController::class, 'insightDetail'])->name('insightDetail');
 Route::get('/insight/{insight}/content', [\App\Http\Controllers\InsightController::class, 'insightDetailContent'])->name('insightDetailContent');
@@ -85,6 +87,11 @@ Route::middleware(['guestAuth'])->group(function () {
 
 Route::middleware(['adminAuth'])->group(function () {
     Route::get('/admin/dashboard', [\App\Http\Controllers\AdminHomeController::class, 'index'])->name('adminDashboard');
+
+    Route::get('/admin/about', [\App\Http\Controllers\AdminHomeController::class, 'aboutPage'])->name('adminAbout');
+    Route::put('/api/about/edit', [\App\Http\Controllers\AdminHomeController::class, 'aboutEditMethod'])->name('adminAboutEditMethod');
+
+    Route::delete('/api/images/clean', [\App\Http\Controllers\AdminHomeController::class, 'cleanImage'])->name('adminCleanImageMethod');
 
     Route::get('/admin/carousel', [\App\Http\Controllers\AdminCarouselController::class, 'carouselListPage'])->name('adminCarousel');
     Route::get('/admin/carousel/add', [\App\Http\Controllers\AdminCarouselController::class, 'carouselAddPage'])->name('adminCarouselAdd');
@@ -146,4 +153,11 @@ Route::middleware(['adminAuth'])->group(function () {
     Route::get('/admin/waste', [\App\Http\Controllers\AdminWasteController::class, 'wasteListPage'])->name('adminWaste');
     Route::get('/admin/waste/detail/{waste}', [\App\Http\Controllers\AdminWasteController::class, 'wasteDetailPage'])->name('adminWasteDetail');
     Route::put('/api/waste/confirm/{waste}', [\App\Http\Controllers\AdminWasteController::class, 'wasteConfirmMethod'])->name('adminWasteConfirmMethod');
+
+    Route::get('/admin/faq', [\App\Http\Controllers\AdminFAQController::class, 'FAQListPage'])->name('adminFAQ');
+    Route::get('/admin/faq/add', [\App\Http\Controllers\AdminFAQController::class, 'FAQAddPage'])->name('adminFAQAdd');
+    Route::post('/api/faq/add', [\App\Http\Controllers\AdminFAQController::class, 'FAQAddMethod'])->name('adminFAQAddMethod');
+    Route::get('/admin/faq/edit/{faq}', [\App\Http\Controllers\AdminFAQController::class, 'FAQEditPage'])->name('adminFAQEdit');
+    Route::put('/api/faq/edit/{faq}', [\App\Http\Controllers\AdminFAQController::class, 'FAQEditMethod'])->name('adminFAQEditMethod');
+    Route::delete('/api/faq/delete/{faq}', [\App\Http\Controllers\AdminFAQController::class, 'FAQDeleteMethod'])->name('adminFAQDeleteMethod');
 });

@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Carousel;
 use App\Models\CoinUse;
 use App\Models\Explore;
+use App\Models\Faq;
 use App\Models\Insight;
 use App\Models\Notification;
 use App\Models\Order;
 use App\Models\OrderExplore;
+use App\Models\Sysparam;
 use App\Models\User;
 use App\Models\Wisata;
 use App\Models\Wishlist;
@@ -23,22 +25,24 @@ class MenuController extends Controller
         $carouselList = Carousel::all();
         $exploreList = Explore::limit(3)->get();
         $insightList = Insight::limit(3)->get();
+        $faqList = Faq::limit(3)->get();
 
         return view('user.index')
             ->with('carouselList', $carouselList)
             ->with('exploreList', $exploreList)
-            ->with('insightList', $insightList);
+            ->with('insightList', $insightList)
+            ->with('faqList', $faqList);
     }
 
     public function orderList(Request $request) {
         $type = $request->query('type');
 
         if($type == 'history') {
-            $orderWisataList = Order::with('customer')->with('wisata')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->get();
-            $orderExploreList = OrderExplore::with('customer')->with('explore')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->get();
+            $orderWisataList = Order::with('customer')->with('wisata')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->where('date', '<', Carbon::today())->get();
+            $orderExploreList = OrderExplore::with('customer')->with('explore')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->where('date', '<', Carbon::today())->get();
         } else {
-            $orderWisataList = Order::with('customer')->with('wisata')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '1')->where('date', '>=', Carbon::today()->subDays(30))->get();
-            $orderExploreList = OrderExplore::with('customer')->with('explore')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '1')->where('date', '>=', Carbon::today()->subDays(30))->get();
+            $orderWisataList = Order::with('customer')->with('wisata')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '1')->where('date', '>=', Carbon::today()->subDays(30))->orWhere('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->where('date', '>=', Carbon::today())->get();
+            $orderExploreList = OrderExplore::with('customer')->with('explore')->where('user_id', '=', Auth::user()->id)->where('status_code', '=', '1')->where('date', '>=', Carbon::today()->subDays(30))->orWhere('user_id', '=', Auth::user()->id)->where('status_code', '=', '2')->where('date', '>=', Carbon::today())->get();
             $type = 'order';
         }
 
@@ -103,7 +107,16 @@ class MenuController extends Controller
     }
 
     public function faq(Request $request) {
-        return view('user.faq');
+        $faqList = Faq::all();
+        
+        return view('user.faq')
+            ->with('faqList', $faqList);
+    }
+
+    public function about(Request $request) {
+        $about = Sysparam::where('param', '=', 'ecotrip_desc')->first();
+
+        return view('user.about')->with('about', $about);
     }
 
     public function profile(Request $request) {

@@ -16,87 +16,17 @@
             <div class="w-full mt-6">
                 <h1 class="text-4xl font-bold mb-6">Frequently Ask Question</h1>
                 <ul class="w-full">
+                    @foreach ($faqList as $faq)
                     <li x-data="{ open: false }" class="mb-4">
                         <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
+                            <div class="text-xl">{{ $faq->title }}</div>
                             <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
                         </div>
                         <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi, debitis delectus dolorum ducimus, eligendi est et illo ipsum labore nisi numquam perspiciatis quaerat quas quisquam sint vero, voluptate voluptatem.
+                            {{ $faq->description }}
                         </p>
                     </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Bagaimana Cara memesan EcoExplore?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus tempora nesciunt rerum enim asperiores laudantium maiores sed nihil, ratione officiis vitae provident doloribus commodi velit quibusdam beatae fuga eveniet debitis.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate doloremque, corrupti dolore saepe exercitationem magnam quod optio perspiciatis dignissimos cumque nostrum atque odit explicabo, ab dolorum quia delectus at ea.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi, debitis delectus dolorum ducimus, eligendi est et illo ipsum labore nisi numquam perspiciatis quaerat quas quisquam sint vero, voluptate voluptatem.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Bagaimana Cara memesan EcoExplore?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus tempora nesciunt rerum enim asperiores laudantium maiores sed nihil, ratione officiis vitae provident doloribus commodi velit quibusdam beatae fuga eveniet debitis.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate doloremque, corrupti dolore saepe exercitationem magnam quod optio perspiciatis dignissimos cumque nostrum atque odit explicabo, ab dolorum quia delectus at ea.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem commodi, debitis delectus dolorum ducimus, eligendi est et illo ipsum labore nisi numquam perspiciatis quaerat quas quisquam sint vero, voluptate voluptatem.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Bagaimana Cara memesan EcoExplore?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus tempora nesciunt rerum enim asperiores laudantium maiores sed nihil, ratione officiis vitae provident doloribus commodi velit quibusdam beatae fuga eveniet debitis.
-                        </p>
-                    </li>
-                    <li x-data="{ open: false }" class="mb-4">
-                        <div class="cursor-pointer flex justify-between items-center px-8 py-4 rounded border border-gray/25 text-primary" @click="open = ! open">
-                            <div class="text-xl">Apa itu EcoWisata?</div>
-                            <div class="text-2xl"><i class='bx bx-chevron-down' ></i></div>
-                        </div>
-                        <p class="px-8 py-4" x-show="open">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate doloremque, corrupti dolore saepe exercitationem magnam quod optio perspiciatis dignissimos cumque nostrum atque odit explicabo, ab dolorum quia delectus at ea.
-                        </p>
-                    </li>
+                    @endforeach
                 </ul>
             </div>
         </div>

@@ -5,16 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class WasteImage extends Model
+class Sysparam extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'waste_id',
-        'image',
+        'param',
+        'value'
     ];
-
-    public function waste() {
-        return $this->belongsTo(Waste::class, 'waste_id', 'id');
-    }
 }

@@ -40,7 +40,7 @@
             <div class="px-24 py-16 rounded-lg h-96 flex justify-end items-start flex-col" style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
                 <h2 class="text-white text-5xl font-bold mb-4">#KiniSaatnyaBijakBerwisata</h2>
                 <p class="text-white mb-6">Ecotourism is The Future of Indonesia’s Travel</p>
-                <a href="https://www.instagram.com/ecotrip_id/" target="_blank" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
+                <a href="{{ route('about') }}" class="rounded-full text-white border border-white px-6 py-2 transition hover:bg-white hover:text-primary">Tentang Kami</a>
             </div>
         </div>
     </section>

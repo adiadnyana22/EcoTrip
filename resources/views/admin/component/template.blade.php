@@ -11,6 +11,8 @@
 
     <title>@yield('title')</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/user/images/logoIcon.png') }}">
+
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/f0f2d9386c.js" crossorigin="anonymous"></script>
     <link
@@ -86,6 +88,30 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
                 <form action="{{ route('logout') }}">
                     <button type="submit" class="btn btn-primary" href="">Logout</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Clean EcoWaste Image Modal-->
+<div class="modal fade" id="cleanModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Anda ingin menghapus image?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Pilih "Bersihkan" jika anda ingin menghapus semua gambar EcoWaste yang sudah diverifikasi lebih dari 10 hari lalu.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
+                <form method="POST" action="{{ route('adminCleanImageMethod') }}">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-primary">Bersihkan</button>
                 </form>
             </div>
         </div>
