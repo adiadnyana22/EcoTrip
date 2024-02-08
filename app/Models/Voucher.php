@@ -14,5 +14,6 @@ class Voucher extends Model
         'description',
         'percentage',
         'max_nominal',
+        'min_transaction_nominal'
     ];
 }

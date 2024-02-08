@@ -26,12 +26,14 @@ class AdminVoucherController extends Controller
             'description' => 'required',
             'percentage' => 'required|numeric|min:1|max:100',
             'max_nominal' => 'required|numeric',
+            'min_transaction_nominal' => 'required|numeric',
         ]);
 
         $voucher->name = $request->name;
         $voucher->description = $request->description;
         $voucher->percentage = $request->percentage;
         $voucher->max_nominal = $request->max_nominal;
+        $voucher->min_transaction_nominal = $request->min_transaction_nominal;
         $voucher->save();
 
         return redirect()->route('adminVoucher');
@@ -53,6 +55,7 @@ class AdminVoucherController extends Controller
             'description' => 'required',
             'percentage' => 'required|numeric|min:1|max:100',
             'max_nominal' => 'required|numeric',
+            'min_transaction_nominal' => 'required|numeric',
         ]);
 
         $voucher = new Voucher();
@@ -60,6 +63,7 @@ class AdminVoucherController extends Controller
         $voucher->description = $request->description;
         $voucher->percentage = $request->percentage;
         $voucher->max_nominal = $request->max_nominal;
+        $voucher->min_transaction_nominal = $request->min_transaction_nominal;
         $voucher->save();
 
         $users = User::all();

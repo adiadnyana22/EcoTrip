@@ -36,6 +36,11 @@
                     <input type="number" class="form-control" name="max_nominal" value="{{ $voucher->max_nominal }}" placeholder="Nominal Maksimum ..." required>
                     @error('max_nominal')<p class="text-danger mt-1">{{ $message }}</p>@enderror
                 </div>
+                <div class="mb-3">
+                    <label class="form-label">Minimum Nominal Transaksi</label>
+                    <input type="number" class="form-control" name="min_transaction_nominal" value="{{ $voucher->min_transaction_nominal }}"  placeholder="Minimum Nominal Transaksi ..." required>
+                    @error('min_transaction_nominal')<p class="text-danger mt-1">{{ $message }}</p>@enderror
+                </div>
                 <button type="submit" id="submit" class="btn btn-primary float-right">Ubah</button>
                 <a href="{{ route('adminVoucher') }}" class="btn btn-info float-right mr-3">Kembali</a>
             </form>

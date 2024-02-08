@@ -141,7 +141,7 @@ class PemesananExploreController extends Controller
 
         $voucherList = array();
         foreach ($voucher as $vc){
-            array_push($voucherList, array("id" => $vc->id, "name" => $vc->name, "description" => $vc->description, "percentage" => $vc->percentage, "max_nominal" => $vc->max_nominal, "actual_disc" => min($vc->percentage/100 * $total_price, $vc->max_nominal)));
+            array_push($voucherList, array("id" => $vc->id, "name" => $vc->name, "description" => $vc->description, "percentage" => $vc->percentage, "max_nominal" => $vc->max_nominal, "actual_disc" => min($vc->percentage/100 * $total_price, $vc->max_nominal), "min_transaction_nominal" => $vc->min_transaction_nominal));
         }
 
         return view('user.pemesanan3_explore')

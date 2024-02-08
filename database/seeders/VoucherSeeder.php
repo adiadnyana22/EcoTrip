@@ -20,6 +20,7 @@ class VoucherSeeder extends Seeder
             'description' => 'Diskon 10% s/d 20k',
             'percentage' => 10,
             'max_nominal' => 20000,
+            'min_transaction_nominal' => 50000
         ]);
 
         Voucher::create([
@@ -27,6 +28,7 @@ class VoucherSeeder extends Seeder
             'description' => 'Diskon 5% s/d 10k',
             'percentage' => 5,
             'max_nominal' => 10000,
+            'min_transaction_nominal' => 20000
         ]);
 
         Voucher::create([
@@ -34,6 +36,7 @@ class VoucherSeeder extends Seeder
             'description' => 'Diskon 25% s/d 50k',
             'percentage' => 25,
             'max_nominal' => 50000,
+            'min_transaction_nominal' => 35000
         ]);
     }
 }

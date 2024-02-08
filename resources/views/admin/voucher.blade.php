@@ -28,6 +28,7 @@
                             <th>Deskripsi</th>
                             <th>Persentase</th>
                             <th>Max Nominal</th>
+                            <th>Min Transaksi Nominal</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -38,6 +39,7 @@
                             <th>Deskripsi</th>
                             <th>Persentase</th>
                             <th>Max Nominal</th>
+                            <th>Min Transaksi Nominal</th>
                             <th>Aksi</th>
                         </tr>
                     </tfoot>
@@ -52,6 +54,7 @@
                                 <td>{{ $voucher->description }}</td>
                                 <td>{{ $voucher->percentage.'%' }}</td>
                                 <td>{{ number_format($voucher->max_nominal) }}</td>
+                                <td>{{ number_format($voucher->min_transaction_nominal) }}</td>
                                 <td class="d-flex flex-wrap" style="gap: .5rem">
                                     <form method="POST" action="{{ route('adminVoucherDeleteMethod', $voucher->id) }}">
                                         @method('DELETE')

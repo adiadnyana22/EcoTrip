@@ -53,7 +53,7 @@
                     </div>
                     @endfor
                 </div>
-                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ count: 0, useCoin: false, coin: {{ \Illuminate\Support\Facades\Auth::user()->coin }}, useVoucher: false, voucher: '', voucherList: {{ str_replace('"', "'", json_encode($voucher)) }}, totalPrice: @json($total_price), get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucherList.find((vc) => vc.id == this.voucher).actual_disc : 0) }  }">
+                <div class="bg-white rounded-lg shadow mb-5 px-6 py-4" x-data="{ count: 0, useCoin: false, coin: {{ \Illuminate\Support\Facades\Auth::user()->coin }}, useVoucher: false, voucher: '', voucherList: {{ str_replace('"', "'", json_encode($voucher)) }}, totalPrice: @json($total_price), ticketPrice: {{ $total_price }}, get totalPay() { return this.totalPrice - ((this.useCoin) ? this.coin : 0) - ((this.useVoucher) ? this.voucherList.find((vc) => vc.id == this.voucher).actual_disc : 0) }  }">
                     <h2 class="font-medium text-xl mb-6">{{ $wisata->name }}</h2>
                     <div class="flex justify-between items-center my-2">
                         <span class="text-gray">Tiket Masuk x {{ $qty }}</span>
@@ -119,10 +119,13 @@
                                     <div class="mt-8 flex flex-col gap-4" x-show="voucherList.length > 0">
                                         <template x-for="vc in voucherList" :key="vc.id">
                                             <label>
-                                                <input class="sr-only peer" name="voucher" type="radio" :value="vc.id" x-model="voucher" />
-                                                <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white">
-                                                    <div class="text-xl font-bold" x-text="vc.name"></div>
-                                                    <p class="text-sm text-gray" x-text="vc.description"></p>
+                                                <input class="sr-only peer" name="voucher" type="radio" :value="vc.id" x-model="voucher" x-bind:disabled="ticketPrice < vc.min_transaction_nominal" />
+                                                <div class="px-4 py-2 rounded-lg text-primary peer-checked:font-semibold peer-checked:bg-primary peer-checked:text-white border border-primary" x-bind:class="ticketPrice < vc.min_transaction_nominal ? 'bg-gray' : ''">
+                                                    <div class="text-xl font-bold" x-text="vc.name" x-bind:class="ticketPrice < vc.min_transaction_nominal ? 'text-black' : ''"></div>
+                                                    <div class="flex justify-between">
+                                                        <p class="text-sm text-gray" x-text="vc.description" x-bind:class="ticketPrice < vc.min_transaction_nominal ? 'text-black' : ''"></p>
+                                                        <p class="text-sm text-gray" x-text="'min Rp ' + new Intl.NumberFormat('en-ID').format(vc.min_transaction_nominal)" x-bind:class="ticketPrice < vc.min_transaction_nominal ? 'text-black' : ''"></p>
+                                                    </div>
                                                 </div>
                                             </label>
                                         </template>

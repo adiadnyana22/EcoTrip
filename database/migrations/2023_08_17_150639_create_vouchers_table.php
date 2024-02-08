@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description');
             $table->integer('percentage');
             $table->integer('max_nominal');
+            $table->integer('min_transaction_nominal');
             $table->timestamps();
         });
     }
