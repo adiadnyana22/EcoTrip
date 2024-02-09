@@ -48,7 +48,7 @@
                             <strong class="text-2xl" x-ref="norek">7670533471</strong>
                         </div>
                         <div>
-                            <i x-show="!copied" class='bx bx-copy text-white text-3xl cursor-pointer px-6 py-3' @click="navigator.clipboard.writeText($refs.norek.innerText); copied = true"></i>
+                            <i x-show="!copied" class='bx bx-copy text-white text-3xl cursor-pointer px-6 py-3 transition hover:text-white/75' @click="navigator.clipboard.writeText($refs.norek.innerText); copied = true"></i>
                             <span x-show="copied" class="text-white text-lg px-6 py-3">Copied</span>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                         <span class="font-bold text-lg">Total Pembayaran</span>
                         <span class="font-bold text-lg">Rp{{ number_format($grand_total) }}</span>
                     </div>
-                    <a href="{{ route('wisataSuccess') }}" class="rounded bg-primary px-4 py-3 text-center text-white block w-full mb-2 mt-8">Saya Sudah Bayar</a>
+                    <a href="{{ route('wisataSuccess') }}" class="rounded bg-primary px-4 py-3 text-center text-white block w-full mb-2 mt-8 border border-primary transition hover:text-primary hover:bg-transparent">Saya Sudah Bayar</a>
                 </div>
             </div>
         </div>

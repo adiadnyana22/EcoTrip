@@ -25,11 +25,11 @@
             </div>
             <div class="flex flex-col gap-10 my-3">
                 @foreach($insightList as $insight)
-                <a href="{{ route('insightDetail', $insight->id) }}" class="flex items-center gap-10">
+                <a href="{{ route('insightDetail', $insight->id) }}" class="flex items-center gap-10 rounded-lg transition hover:shadow-lg">
                     <img src="{{ asset('assets/user/images/insight/'.$insight->picture) }}" alt="Insight" class="w-96 h-48 object-cover rounded-lg">
                     <div class="flex flex-col gap-3">
                         <h2 class="text-xl font-bold">{{ $insight->title }}</h2>
-                        <p style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="text-gray">
+                        <p style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; text-overflow: ellipsis;" class="text-gray pr-6">
                             {{ strip_tags($insight->content) }}
                         </p>
                         <p class="text-gray mt-4">{{ date("j F Y", strtotime($insight->date)) }}</p>

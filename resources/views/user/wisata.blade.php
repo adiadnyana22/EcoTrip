@@ -25,9 +25,9 @@
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 @foreach($wisataList as $wisata)
-                <a href="{{ route('wisataDetail', $wisata->id) }}">
+                <a href="{{ route('wisataDetail', $wisata->id) }}" class="transition hover:shadow-lg rounded-lg group">
                     <img src="{{ asset('assets/user/images/wisata/'.$wisata->picture) }}" alt="Wisata" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
+                    <div class="py-3 transition-all group-hover:px-4">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
                                 <div><i class='bx bxs-star text-star' ></i> {{ $wisata->order == 0 ? '-' : $wisata->rating }}</div>

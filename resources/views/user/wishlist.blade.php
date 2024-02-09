@@ -16,9 +16,9 @@
                 <div class="py-3 grid grid-cols-2 gap-x-8 gap-y-4">
                     @foreach ($list as $data)
                         @if ($type == 'explore')
-                        <a href="{{ route('exploreDetail', $data->explore->id) }}">
+                        <a href="{{ route('exploreDetail', $data->explore->id) }}" class="transition hover:shadow-lg rounded-lg group">
                             <img src="{{ asset('assets/user/images/explore/'.$data->explore->picture) }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                            <div class="py-3">
+                            <div class="py-3 transition-all group-hover:px-4">
                                 <div class="flex justify-between items-center">
                                     <div class="flex justify-center items-center text-gray gap-4">
                                         <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">{{ $data->explore->type == 1 ? 'Open Trip' : 'Private Trip' }}</div>

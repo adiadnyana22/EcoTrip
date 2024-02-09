@@ -19,8 +19,8 @@
                     </div>  
                     
                     <div class="flex justify-center items-center gap-4">
-                        <a href="{{ route('exploreList', ['type' => 'open']) }}" class="rounded-full py-2 px-4 {{ $type == 'open' ? 'bg-blue text-white' : 'text-gray border border-gray' }}">Open Trip</a>
-                        <a href="{{ route('exploreList', ['type' => 'private']) }}" class="rounded-full py-2 px-4 {{ $type == 'private' ? 'bg-blue text-white' : 'text-gray border border-gray' }}">Private Trip</a>
+                        <a href="{{ route('exploreList', ['type' => 'open']) }}" class="rounded-full py-2 px-4 transition hover:bg-blue hover:text-white hover:border-blue {{ $type == 'open' ? 'bg-blue text-white border border-blue' : 'text-gray border border-gray' }}">Open Trip</a>
+                        <a href="{{ route('exploreList', ['type' => 'private']) }}" class="rounded-full py-2 px-4 transition hover:bg-blue hover:text-white hover:border-blue {{ $type == 'private' ? 'bg-blue text-white border border-blue' : 'text-gray border border-gray' }}">Private Trip</a>
                     </div>
                 </div>
                 <form action="" method="GET" class="flex gap-2 items-center" x-data="{ open: {{ $search == null ? 'false' : 'true' }}, click: 0, search: '{{ $search }}' }">
@@ -31,9 +31,9 @@
             </div>
             <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-12 my-3">
                 @foreach($exploreList as $explore)
-                <a href="{{ route('exploreDetail', $explore->id) }}">
+                <a href="{{ route('exploreDetail', $explore->id) }}" class="transition hover:shadow-lg rounded-lg group">
                     <img src="{{ asset('assets/user/images/explore/'.$explore->picture) }}" alt="Explore" class="w-full h-48 object-cover rounded-lg">
-                    <div class="py-3">
+                    <div class="py-3 transition-all group-hover:px-4">
                         <div class="flex justify-between items-center">
                             <div class="flex justify-center items-center text-gray gap-4">
                                 <div class="rounded-full py-1.5 px-3 bg-blue text-white text-sm">{{ $explore->type == 1 ? 'Open Trip' : 'Private Trip' }}</div>

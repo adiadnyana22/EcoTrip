@@ -208,9 +208,9 @@
                         <div class="flex justify-between flex-wrap items-center my-5">
                             <label for="#">Jumlah Peserta</label>
                             <div class="flex items-center gap-2">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.max(count - 1, 1)">-</button>
+                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl transition hover:bg-black/75" x-on:click="count = Math.max(count - 1, 1)">-</button>
                                 <input type="number" x-model="count" name="qty" class="w-12 text-center outline-none text-xl">
-                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl" x-on:click="count = Math.min(count + 1, 10)">+</button>
+                                <button type="button" class="py-1 px-3 bg-black rounded text-white text-xl transition hover:bg-black/75" x-on:click="count = Math.min(count + 1, 10)">+</button>
                             </div>
                         </div>
                         <div class="py-5 flex justify-between items-center">
@@ -218,7 +218,7 @@
                             <strong class="font-bold text-2xl">Rp <span x-text="new Intl.NumberFormat('en-ID').format(count * (isWeekend() ? weekendPrice : weekdayPrice))"></span></strong>
                         </div>
                         <input type="hidden" name="wisata_id" value="{{ $wisata->id }}">
-                        <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white">Pesan Sekarang</button>
+                        <button class="w-full px-4 py-3 mt-2 rounded-xl bg-primary text-white transition border border-primary hover:bg-transparent hover:text-primary">Pesan Sekarang</button>
                     </form>
                 </div>
             </div>

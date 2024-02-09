@@ -10,15 +10,15 @@
                     <div class="sticky top-0 bg-white w-[750px]">
                         <h1 class="text-4xl font-bold pt-10">Notification</h1>
                         <ul class="flex gap-5 pb-2 mt-4">
-                            <li class="{{ $type == 'all' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification') }}">Semua</a></li>
-                            <li class="{{ $type == 'transaksi' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'transaksi']) }}">Transaksi</a></li>
-                            <li class="{{ $type == 'promo' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'promo']) }}">Promo</a></li>
-                            <li class="{{ $type == 'koin' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'koin']) }}">Koin</a></li>
+                            <li class="transition hover:text-black {{ $type == 'all' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification') }}">Semua</a></li>
+                            <li class="transition hover:text-black {{ $type == 'transaksi' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'transaksi']) }}">Transaksi</a></li>
+                            <li class="transition hover:text-black {{ $type == 'promo' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'promo']) }}">Promo</a></li>
+                            <li class="transition hover:text-black {{ $type == 'koin' ? 'text-black' : 'text-gray' }}"><a href="{{ route('notification', ['type' => 'koin']) }}">Koin</a></li>
                         </ul>
                     </div>
                     <ul class="mt-4 flex flex-col gap-4">
                         @foreach ($list as $notif)
-                        <a href="@if($notif->type == 0) {{ route('history') }} @elseif($notif->type == 1) {{ route('voucher') }} @elseif($notif->type == 2) {{ route('coin') }} @endif" class="flex justify-between items-center gap-2 rounded-lg border border-gray/25 px-6 py-4 w-[750px] max-w-full">
+                        <a href="@if($notif->type == 0) {{ route('history') }} @elseif($notif->type == 1) {{ route('voucher') }} @elseif($notif->type == 2) {{ route('coin') }} @endif" class="flex justify-between items-center gap-2 rounded-lg border border-gray/25 transition hover:border-black px-6 py-4 w-[750px] max-w-full">
                             <div class="flex gap-8 items-center">
                                 <i class='bx bx-bell text-primary bg-primary/5 px-4 py-3 rounded-full text-2xl'></i>
                                 <div>

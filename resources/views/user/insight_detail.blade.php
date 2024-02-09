@@ -21,14 +21,14 @@
             <div class="flex gap-8 my-3">
                 <div class="sticky top-10 flex flex-col items-center px-8 pt-12 gap-6">
                     <span>Bagikan</span>
-                    <button type="button" onClick="navigator.clipboard.writeText(window.location.href)" class="text-2xl rounded-full h-12 w-12 bg-gray/25 flex items-center justify-center"><i class='bx bx-link'></i></butto>
+                    <button type="button" onClick="navigator.clipboard.writeText(window.location.href)" class="text-2xl rounded-full h-12 w-12 bg-gray/25 flex items-center justify-center transition hover:bg-gray/75"><i class='bx bx-link'></i></butto>
                 </div>
                 <div class="grow">
                     <img src="{{ asset('assets/user/images/insight/'.$insight->picture) }}" alt="Eco Insight" class="w-full h-96 object-cover">
                     <p class="text-gray my-4">{{ date("j F Y", strtotime($insight->date)) }}</p>
                     <div class="mt-8 w-full">
                         <h1 class="font-bold text-2xl mb-6">{{ $insight->title }}</h1>
-                        <iframe src="{{ route('insightDetailContent', $insight->id) }}" frameborder="0" class="w-full" onload='javascript:(function(o){o.style.height=(o.contentWindow.document.body.scrollHeight + 100)+"px";}(this));' style="height:400px;width:100%;border:none;overflow:hidden;"></iframe>
+                        <iframe src="{{ route('insightDetailContent', $insight->id) }}" frameborder="0" class="w-full" onload='javascript:(function(o){o.style.height=(o.contentWindow.document.body.scrollHeight + 150)+"px";}(this));' style="height:400px;width:100%;border:none;overflow:hidden;"></iframe>
                     </div>
                 </div>
             </div>

@@ -13,7 +13,7 @@
             <p class="py-1">
                 Anda telah menjadi bagian dalam membangun perubahan dunia menjadi lebih baik
             </p>
-            <a href="/" class="bg-primary rounded-full py-2 px-8 text-white mt-8 mb-2">Kembali ke beranda</a>
+            <a href="/" class="bg-primary rounded-full py-2 px-8 text-white mt-8 mb-2 border border-primary transition hover:bg-transparent hover:text-primary">Kembali ke beranda</a>
         </div>
     </section>
 @endsection

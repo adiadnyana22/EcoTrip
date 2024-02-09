@@ -7,7 +7,7 @@
         <div class="w-4/6 h-4/6 rounded-lg flex justify-between items-center bg-white relative" style="z-index: 1">
             <div
                 class="basis-7/12 bg-[url('/assets/user/images/login.png')] bg-cover h-full w-full rounded-lg p-12 flex flex-col justify-between text-white">
-                <a href="{{ route('home') }}" class="flex items-center gap-3"><i class='bx bx-chevron-left'></i> Back</a>
+                <a href="{{ route('home') }}" class="flex items-center gap-3 transition hover:text-gray/75"><i class='bx bx-chevron-left'></i> Back</a>
                 <div>
                     <h2 class="font-bold text-3xl mb-2">#KiniSaatnyaBijakBerwisata</h2>
                     <p>Ecotourism is The Future of Indonesia’s Travel</p>
@@ -29,14 +29,14 @@
                                placeholder="password" name="password">
                     </div>
                     <div class="my-3">
-                        <button class="block w-full px-6 py-3 rounded-lg text-white"
+                        <button class="block w-full px-6 py-3 rounded-lg text-white transition hover:text-white/50"
                                 style="background: linear-gradient(218deg, #71984F 0%, rgba(113, 152, 79, 0.00) 100%), #134B40;">
                             Masuk
                         </button>
                     </div>
                 </form>
                 <div class="text-gray flex items-center gap-3 mt-6">Belum memiliki akun? <a href="{{ route('register') }}"
-                                                                                            class="text-primary underline">Daftar</a>
+                                                                                            class="text-primary hover:underline">Daftar</a>
                 </div>
             </div>
         </div>

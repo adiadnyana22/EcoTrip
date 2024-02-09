@@ -7,15 +7,15 @@
         <div class="container mx-auto flex">
             <div class="w-80 mt-12">
                 <ul class="sticky top-10">
-                    <li><a href="{{ route('history') }}" class="block px-2 py-3 text-lg @if($type != 'order') text-gray @endif">My Orders</a></li>
-                    <li><a href="{{ route('history', ['type' => 'history']) }}" class="block px-2 py-3 text-lg @if($type != 'history') text-gray @endif">My History</a></li>
+                    <li><a href="{{ route('history') }}" class="block px-2 py-3 text-lg transition hover:text-black @if($type != 'order') text-gray @endif">My Orders</a></li>
+                    <li><a href="{{ route('history', ['type' => 'history']) }}" class="block px-2 py-3 text-lg transition hover:text-black @if($type != 'history') text-gray @endif">My History</a></li>
                 </ul>
             </div>
             <div class="w-full mt-6">
                 <h1 class="text-4xl font-bold mb-6">My Trip</h1>
                 @foreach ($orderWisata as $order)
                 <div class="py-3" x-data="{ modelOpen: false }">
-                    <div class="rounded-lg border border-gray/20 px-8 py-6 flex gap-3 justify-between w-full cursor-pointer" @click="modelOpen = true;">
+                    <div class="rounded-lg border border-gray/20 transition hover:border-black px-8 py-6 flex gap-3 justify-between w-full cursor-pointer" @click="modelOpen = true;">
                         <div>
                             <p class="text-sm mb-5">{{ \Carbon\Carbon::parse($order->date)->format('l, d M Y') }}</p>
                             <h2 class="text-xl mb-1">{{ $order->wisata->name }}</h2>
@@ -122,7 +122,7 @@
                 @endforeach
                 @foreach ($orderExplore as $order)
                 <div class="py-3" x-data="{ modelOpen: false }">
-                    <div class="rounded-lg border border-gray/20 px-8 py-6 flex gap-3 justify-between w-full cursor-pointer" @click="modelOpen = true;">
+                    <div class="rounded-lg border border-gray/20 transition hover:border-black px-8 py-6 flex gap-3 justify-between w-full cursor-pointer" @click="modelOpen = true;">
                         <div>
                             <p class="text-sm mb-5">{{ \Carbon\Carbon::parse($order->date)->format('l, d M Y') }}</p>
                             <h2 class="text-xl mb-1">{{ $order->explore->name }}</h2>

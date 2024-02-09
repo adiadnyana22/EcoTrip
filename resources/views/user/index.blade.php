@@ -80,25 +80,25 @@
             </div>
             <div class="flex justify-center items-center gap-16 flex-wrap">
                 <a href="{{ route('wisataList') }}" class="flex justify-center items-center flex-col gap-3">
-                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
+                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white transition hover:bg-white/75">
                         <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Eco Wisata" class="w-10">
                     </div>
                     <div class="text-lg text-white">EcoWisata</div>
                 </a>
                 <a href="{{ route('exploreList') }}" class="flex justify-center items-center flex-col gap-3">
-                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
+                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white transition hover:bg-white/75">
                         <img src="{{ asset('assets/user/images/homeEcoWisataIcon.svg') }}" alt="Eco Explore" class="w-10">
                     </div>
                     <div class="text-lg text-white">EcoExplore</div>
                 </a>
                 <a href="{{ route('insightList') }}" class="flex justify-center items-center flex-col gap-3">
-                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
+                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white transition hover:bg-white/75">
                         <img src="{{ asset('assets/user/images/homeEcoInsightIcon.svg') }}" alt="Eco Insight" class="w-10">
                     </div>
                     <div class="text-lg text-white">EcoInsight</div>
                 </a>
                 <a href="{{ route('viewWaste1') }}" class="flex justify-center items-center flex-col gap-3">
-                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white">
+                    <div class="flex items-center justify-center w-20 h-20 rounded-full bg-white transition hover:bg-white/75">
                         <img src="{{ asset('assets/user/images/homeEcoWasteIcon.svg') }}" alt="Eco Waste" class="w-10">
                     </div>
                     <div class="text-lg text-white">EcoWaste</div>

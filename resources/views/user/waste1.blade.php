@@ -9,7 +9,7 @@
                 <a href="{{ route('home') }}"><i class='bx bx-chevron-left text-4xl'></i></a>
                 <img src="{{ asset('assets/user/images/homeLogo.png') }}" alt="Logo" class="w-32">
             </div>
-            <a href="#" class="my-12 shadow px-6 py-4 rounded-xl block" @click="modelOpen = true">
+            <a href="#" class="my-12 shadow px-6 py-4 rounded-xl block transition hover:shadow-lg" @click="modelOpen = true">
                 <h2>Apa itu EcoWaste?</h2>
                 <div class="flex justify-between items-center text-gray">
                     <p>Klik untuk ketahui lebih detail</p>
@@ -172,7 +172,7 @@
                 </div>
                 @if(count($wisataList) > 0 || count($exploreList) > 0)
                     <div class="flex justify-end">
-                        <button class="rounded-lg px-4 py-2 text-white" x-bind:class="(!ticketSelect) ? 'bg-gray' : 'bg-black'" x-bind:disabled="!ticketSelect">Selanjutnya</button>
+                        <button class="rounded-lg px-4 py-2 text-white" x-bind:class="(!ticketSelect) ? 'bg-gray' : 'border border-primary bg-primary transition hover:bg-transparent hover:text-primary'" x-bind:disabled="!ticketSelect">Selanjutnya</button>
                     </div>
                 @endif
             </form>

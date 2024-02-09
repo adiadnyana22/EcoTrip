@@ -7,10 +7,10 @@
         <div class="container mx-auto flex">
             <div class="w-80 mt-12">
                 <ul class="sticky top-10">
-                    <li><a href="{{ route('profile') }}" class="block px-2 py-3 text-lg">Personal Info</a></li>
-                    <li><a href="{{ route('voucher') }}" class="block px-2 py-3 text-lg text-gray">Voucher</a></li>
-                    <li><a href="{{ route('faq') }}" class="block px-2 py-3 text-lg text-gray">FAQ</a></li>
-                    <li><a href="https://wa.me/+6281246868369" target="_blank" class="block px-2 py-3 text-lg text-gray">Customer Help</a></li>
+                    <li><a href="{{ route('profile') }}" class="block px-2 py-3 text-lg transition hover:text-black">Personal Info</a></li>
+                    <li><a href="{{ route('voucher') }}" class="block px-2 py-3 text-lg text-gray transition hover:text-black">Voucher</a></li>
+                    <li><a href="{{ route('faq') }}" class="block px-2 py-3 text-lg text-gray transition hover:text-black">FAQ</a></li>
+                    <li><a href="https://wa.me/+6281246868369" target="_blank" class="block px-2 py-3 text-lg text-gray transition hover:text-black">Customer Help</a></li>
                 </ul>
             </div>
             <div class="w-full mt-6">
@@ -55,8 +55,7 @@
                             </select>
                         </div>
                         <div class="my-3 flex justify-end">
-                            <button class="px-6 py-3 rounded-lg text-white"
-                                    style="background: linear-gradient(257deg, #3B9B88 -29.89%, rgba(59, 155, 136, 0.00) 106.79%), #134B40;">
+                            <button class="px-6 py-2 rounded-lg text-white bg-primary border border-primary transition hover:bg-transparent hover:text-primary">
                                 Simpan
                             </button>
                         </div>

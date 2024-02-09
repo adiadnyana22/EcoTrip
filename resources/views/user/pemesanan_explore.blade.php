@@ -88,7 +88,7 @@
                     <input type="hidden" name="explore_id" value="{{ $explore->id }}">
                     <input type="hidden" name="date" value="{{ $date }}">
                     <input type="hidden" name="qty" value="{{ $qty }}">
-                    <button class="rounded-lg px-4 py-2 bg-black text-white">Selanjutnya</button>
+                    <button class="rounded-lg px-4 py-2 bg-primary text-white transition border border-primary hover:bg-transparent hover:text-primary">Selanjutnya</button>
                 </div>
             </form>
         </div>
